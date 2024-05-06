@@ -41,6 +41,7 @@ struct ContentView: View {
                 }
                 .padding(.vertical, 8)
             }
+            .listStyle(PlainListStyle())
             .padding(.horizontal)
         }
         .padding()
