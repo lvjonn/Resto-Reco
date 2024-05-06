@@ -18,6 +18,7 @@
 		526A2EEF2BE8CADD00A6CE7A /* TopOrBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A2EEE2BE8CADD00A6CE7A /* TopOrBottomView.swift */; };
 		526A2EF12BE8CAF900A6CE7A /* ShuffleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A2EF02BE8CAF900A6CE7A /* ShuffleView.swift */; };
 		526A2EF32BE8CB0400A6CE7A /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A2EF22BE8CB0400A6CE7A /* PlannerView.swift */; };
+		8CF6E5922BE8E20800E0481C /* tempData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8CF6E5912BE8E20800E0481C /* tempData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		526A2EEE2BE8CADD00A6CE7A /* TopOrBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopOrBottomView.swift; sourceTree = "<group>"; };
 		526A2EF02BE8CAF900A6CE7A /* ShuffleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShuffleView.swift; sourceTree = "<group>"; };
 		526A2EF22BE8CB0400A6CE7A /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
+		8CF6E5912BE8E20800E0481C /* tempData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tempData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		5268451B2BE39CDC00403BFC /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				8CF6E5912BE8E20800E0481C /* tempData.json */,
 				5268451C2BE39D0F00403BFC /* YelpFusionAPI.swift */,
 			);
 			path = Services;
@@ -179,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				526845122BE39CC900403BFC /* Preview Assets.xcassets in Resources */,
+				8CF6E5922BE8E20800E0481C /* tempData.json in Resources */,
 				5268450F2BE39CC900403BFC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

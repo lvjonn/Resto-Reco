@@ -34,6 +34,36 @@ struct MenuView: View {
                 // text purpose to see searchText value
                 Text(searchText)
                 
+                // categories
+                HStack(spacing: 10) {
+                    Button("All", action: {})
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                    
+                    Button("List1", action: {})
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                    
+                    Button("List2", action: {})
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                    
+                    Button("List3", action: {})
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                
+                }
+                .padding(.horizontal)
+                .padding(.bottom)
+                
                 List(restoViewModel.restaurants, id: \.id) { restaurant in
                     NavigationLink(destination: RestaurantDetailsView(/*pass in restaurant*/)){
                         VStack(alignment: .leading, spacing: 8) {
