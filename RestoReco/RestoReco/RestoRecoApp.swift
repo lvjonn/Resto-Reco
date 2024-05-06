@@ -12,7 +12,7 @@ struct RestoRecoApp: App {
     @StateObject var restoViewModel = RestoViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(restoViewModel)
+            MenuView().environmentObject(restoViewModel)
         }
     }
 }

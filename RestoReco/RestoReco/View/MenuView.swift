@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
+struct MenuView: View {
     @EnvironmentObject var restoViewModel: RestoViewModel
     
     var body: some View {
@@ -50,6 +50,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(RestoViewModel())
+        MenuView().environmentObject(RestoViewModel())
     }
 }
