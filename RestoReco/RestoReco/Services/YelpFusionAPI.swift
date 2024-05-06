@@ -47,8 +47,6 @@ class YelpFusionAPI{
         let businesses: [RestaurantModel]
     }
 
-
-
     func getBusinessDetails(forId id: String, completion: @escaping (Result<RestaurantModel, Error>) -> Void) {
         let url = URL(string: "https://api.yelp.com/v3/businesses/\(id)")!
         var request = URLRequest(url: url)
