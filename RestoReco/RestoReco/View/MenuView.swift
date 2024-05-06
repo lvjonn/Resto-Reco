@@ -33,7 +33,7 @@ struct MenuView: View {
                                 
                                 Spacer()
                                 
-                                VStack{
+                                VStack(alignment: .leading){
                                     Text(restaurant.name)
                                         .font(.title2)
                                         .fontWeight(.bold)
