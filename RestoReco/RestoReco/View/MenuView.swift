@@ -58,6 +58,44 @@ struct MenuView: View {
                 }
                 .listStyle(PlainListStyle())
                 .padding(.horizontal)
+                
+                // buttons
+                HStack(spacing: 20) {
+                    Button(action: {
+                        // First button action
+                    }) {
+                        Image(systemName: "calendar")
+                            .foregroundColor(.white)
+                            .padding(12)
+                            .background(Color(red: 1.0, green: 0.341, blue: 0.341))
+                            .cornerRadius(15)
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    
+                    Button(action: {
+                        // Second button action
+                    }) {
+                        Image(systemName: "shuffle")
+                            .foregroundColor(.white)
+                            .padding(12)
+                            .background(Color(red: 1.0, green: 0.341, blue: 0.341))
+                            .cornerRadius(15)
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    
+                    Button(action: {
+                        // Third button action
+                    }) {
+                        Image(systemName: "arrowshape.left.arrowshape.right.fill")
+                            .foregroundColor(.white)
+                            .padding(12)
+                            .background(Color(red: 1.0, green: 0.341, blue: 0.341))
+                            .cornerRadius(15)
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                }
+                .padding(.bottom)
+
             }
             .padding()
         }
