@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MenuView: View {
     @EnvironmentObject var restoViewModel: RestoViewModel
+    @State private var searchText = ""
     
     var body: some View {
         NavigationStack{
@@ -16,6 +17,22 @@ struct MenuView: View {
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .padding(.bottom, 20)
+            
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.gray)
+                        .padding(.leading, 1)
+                    
+                    TextField("Search", text: $searchText)
+                        .padding(8)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                        .foregroundColor(.black)
+                }
+                .padding(.horizontal)
+                
+                // text purpose to see searchText value
+                Text(searchText)
                 
                 List(restoViewModel.restaurants, id: \.id) { restaurant in
                     NavigationLink(destination: RestaurantDetailsView(/*pass in restaurant*/)){
@@ -59,14 +76,17 @@ struct MenuView: View {
                 .listStyle(PlainListStyle())
                 .padding(.horizontal)
                 
-                // buttons
+                // buttons - planning, shuffle, top or bottom
                 HStack(spacing: 20) {
                     Button(action: {
                         // First button action
                     }) {
                         Image(systemName: "calendar")
+                            .resizable() // Make the image resizable
+                            .aspectRatio(contentMode: .fit) // Maintain aspect ratio while resizing
+                            .frame(width: 70, height: 40) // Set the desired size
                             .foregroundColor(.white)
-                            .padding(12)
+                            .padding(8) // Increase padding around the image
                             .background(Color(red: 1.0, green: 0.341, blue: 0.341))
                             .cornerRadius(15)
                     }
@@ -76,8 +96,11 @@ struct MenuView: View {
                         // Second button action
                     }) {
                         Image(systemName: "shuffle")
+                            .resizable() // Make the image resizable
+                            .aspectRatio(contentMode: .fit) // Maintain aspect ratio while resizing
+                            .frame(width: 70, height: 40) // Set the desired size
                             .foregroundColor(.white)
-                            .padding(12)
+                            .padding(8) // Increase padding around the image
                             .background(Color(red: 1.0, green: 0.341, blue: 0.341))
                             .cornerRadius(15)
                     }
@@ -87,8 +110,11 @@ struct MenuView: View {
                         // Third button action
                     }) {
                         Image(systemName: "arrowshape.left.arrowshape.right.fill")
+                            .resizable() // Make the image resizable
+                            .aspectRatio(contentMode: .fit) // Maintain aspect ratio while resizing
+                            .frame(width: 70, height: 40) // Set the desired size
                             .foregroundColor(.white)
-                            .padding(12)
+                            .padding(8) // Increase padding around the image
                             .background(Color(red: 1.0, green: 0.341, blue: 0.341))
                             .cornerRadius(15)
                     }
@@ -96,6 +122,7 @@ struct MenuView: View {
                 }
                 .padding(.bottom)
 
+                
             }
             .padding()
         }
