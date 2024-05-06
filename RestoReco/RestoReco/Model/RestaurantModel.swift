@@ -15,6 +15,6 @@ struct RestaurantModel: Codable{
     let rating: Double
     let price: String?
     let phone: String
-    let imageUrl: String
+    let imageUrl: String?
     
 }

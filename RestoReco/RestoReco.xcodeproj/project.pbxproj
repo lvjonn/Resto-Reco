@@ -13,6 +13,7 @@
 		526845122BE39CC900403BFC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 526845112BE39CC900403BFC /* Preview Assets.xcassets */; };
 		5268451D2BE39D0F00403BFC /* YelpFusionAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5268451C2BE39D0F00403BFC /* YelpFusionAPI.swift */; };
 		5268451F2BE3B1D000403BFC /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5268451E2BE3B1D000403BFC /* RestaurantModel.swift */; };
+		526A2EEB2BE8BDB700A6CE7A /* RestoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A2EEA2BE8BDB700A6CE7A /* RestoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		526845112BE39CC900403BFC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5268451C2BE39D0F00403BFC /* YelpFusionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpFusionAPI.swift; sourceTree = "<group>"; };
 		5268451E2BE3B1D000403BFC /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
+		526A2EEA2BE8BDB700A6CE7A /* RestoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		5268451A2BE39CD800403BFC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				526A2EEA2BE8BDB700A6CE7A /* RestoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				5268451D2BE39D0F00403BFC /* YelpFusionAPI.swift in Sources */,
 				5268450D2BE39CC700403BFC /* ContentView.swift in Sources */,
 				5268451F2BE3B1D000403BFC /* RestaurantModel.swift in Sources */,
+				526A2EEB2BE8BDB700A6CE7A /* RestoViewModel.swift in Sources */,
 				5268450B2BE39CC700403BFC /* RestoRecoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

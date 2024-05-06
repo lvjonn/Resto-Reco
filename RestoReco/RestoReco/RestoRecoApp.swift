@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct RestoRecoApp: App {
+    @StateObject var restoViewModel = RestoViewModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(restoViewModel)
         }
     }
 }
