@@ -14,7 +14,9 @@ class YelpFusionAPI{
     func searchBusinesses(location: String, categories: String? = nil, completion: @escaping (Result<[RestaurantModel], Error>) -> Void) {
         var urlComponents = URLComponents(string: "https://api.yelp.com/v3/businesses/search")!
         var queryItems: [URLQueryItem] = [
-            URLQueryItem(name: "location", value: location)
+            URLQueryItem(name: "location", value: location),
+            URLQueryItem(name: "sort_by", value: "best_match"),
+            URLQueryItem(name: "limit", value: "50")
         ]
         
         if let categories = categories {

@@ -26,6 +26,8 @@ struct RestaurantModel: Identifiable, Codable {
     var distance: Double
     var attributes: Attributes
     
+    
+    
     struct Category: Codable {
         var alias: String
         var title: String
