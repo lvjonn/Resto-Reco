@@ -8,15 +8,18 @@ struct MenuView: View {
         NavigationStack{
             VStack {
                 Image(systemName: "fork.knife")
-                    .foregroundColor(.black)
-                    .imageScale(.large)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 50, maxHeight: 50)
+                    .foregroundColor(.red)
                     .foregroundStyle(.tint)
+                    .padding(.bottom)
                 
-                Text("RestoReco")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-                    .padding(.bottom, 20)
+//                Text("RestoReco")
+//                    .font(.largeTitle)
+//                    .fontWeight(.bold)
+//                    .foregroundColor(.red)
+//                    .padding(.bottom, 20)
             
                 HStack {
                     Image(systemName: "magnifyingglass")
@@ -39,25 +42,25 @@ struct MenuView: View {
                     Button("All", action: {})
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.red)
                         .cornerRadius(8)
                     
                     Button("List1", action: {})
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.red)
                         .cornerRadius(8)
                     
                     Button("List2", action: {})
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.red)
                         .cornerRadius(8)
                     
                     Button("List3", action: {})
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.red)
                         .cornerRadius(8)
                 
                 }
@@ -106,55 +109,8 @@ struct MenuView: View {
                 .listStyle(PlainListStyle())
                 .padding(.horizontal)
                 
-                // buttons - planning, shuffle, top or bottom
-                HStack(spacing: 20) {
-                    Button(action: {
-                        // First button action
-                    }) {
-                        Image(systemName: "calendar")
-                            .resizable() // Make the image resizable
-                            .aspectRatio(contentMode: .fit) // Maintain aspect ratio while resizing
-                            .frame(width: 70, height: 40) // Set the desired size
-                            .foregroundColor(.white)
-                            .padding(8) // Increase padding around the image
-                            .background(Color(red: 1.0, green: 0.341, blue: 0.341))
-                            .cornerRadius(15)
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    
-                    Button(action: {
-                        // Second button action
-                    }) {
-                        Image(systemName: "shuffle")
-                            .resizable() // Make the image resizable
-                            .aspectRatio(contentMode: .fit) // Maintain aspect ratio while resizing
-                            .frame(width: 70, height: 40) // Set the desired size
-                            .foregroundColor(.white)
-                            .padding(8) // Increase padding around the image
-                            .background(Color(red: 1.0, green: 0.341, blue: 0.341))
-                            .cornerRadius(15)
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    
-                    Button(action: {
-                        // Third button action
-                    }) {
-                        Image(systemName: "arrowshape.left.arrowshape.right.fill")
-                            .resizable() // Make the image resizable
-                            .aspectRatio(contentMode: .fit) // Maintain aspect ratio while resizing
-                            .frame(width: 70, height: 40) // Set the desired size
-                            .foregroundColor(.white)
-                            .padding(8) // Increase padding around the image
-                            .background(Color(red: 1.0, green: 0.341, blue: 0.341))
-                            .cornerRadius(15)
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                }
-                .padding(.bottom)
-
-                
             }
-            .padding()
+//            .padding()
         }
     }
 }

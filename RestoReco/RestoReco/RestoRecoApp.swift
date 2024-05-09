@@ -12,7 +12,8 @@ struct RestoRecoApp: App {
     @StateObject var restoViewModel = RestoViewModel()
     var body: some Scene {
         WindowGroup {
-            MenuView().environmentObject(restoViewModel)
+            HomeView().environmentObject(restoViewModel)
+                .preferredColorScheme(.light)
         }
     }
 }
