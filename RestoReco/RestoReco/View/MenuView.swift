@@ -70,7 +70,7 @@ struct MenuView: View {
                 List(restoViewModel.restaurants, id: \.id) { restaurant in
                     NavigationLink(destination: RestaurantDetailsView(/*pass in restaurant*/)){
                         VStack(alignment: .leading, spacing: 8) {
-                            HStack {
+                            HStack(spacing: 20) {
                                 AsyncImage(url: URL(string: restaurant.imageUrl ?? "")) { image in
                                     image
                                         .resizable()
@@ -80,8 +80,6 @@ struct MenuView: View {
                                 }
                                 .frame(width: 100, height: 100)
                                 .cornerRadius(8)
-                                
-                                Spacer()
                                 
                                 VStack(alignment: .leading){
                                     Text(restaurant.name)
