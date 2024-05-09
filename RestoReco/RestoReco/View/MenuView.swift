@@ -39,30 +39,20 @@ struct MenuView: View {
                 
                 // categories
                 HStack(spacing: 10) {
-                    Button("All", action: {})
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.red)
-                        .cornerRadius(8)
+                    Button(action: {}) {
+                        Text("All")
+                    }
+                    .buttonStyle(CustomButtonStyle())
+
                     
                     Button("List1", action: {})
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.red)
-                        .cornerRadius(8)
+                        .buttonStyle(CustomButtonStyle())
                     
                     Button("List2", action: {})
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.red)
-                        .cornerRadius(8)
+                        .buttonStyle(CustomButtonStyle())
                     
                     Button("List3", action: {})
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color.red)
-                        .cornerRadius(8)
-                
+                        .buttonStyle(CustomButtonStyle())
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
@@ -110,6 +100,20 @@ struct MenuView: View {
             }
 //            .padding()
         }
+    }
+}
+
+//reusable style for button
+struct CustomButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(.white)
+            .padding(.vertical, 10)
+            .padding(.horizontal, 20)
+            .background(Color.red)
+            .cornerRadius(20)
+            .shadow(color: .gray, radius: 2, x: 1, y: 2)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1.0) // Add a scale effect when pressed
     }
 }
 
