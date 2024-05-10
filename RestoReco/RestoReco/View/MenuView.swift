@@ -65,37 +65,7 @@ struct MenuView: View {
                     NavigationLink(destination: RestaurantDetailsView(/*pass in restaurant*/
                         restaurant: restaurant)) {
                         VStack(alignment: .leading, spacing: 8) {
-                            HStack(spacing: 20) {
-                                AsyncImage(url: URL(string: restaurant.imageUrl ?? "")) { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .cornerRadius(10)
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                .frame(width: 100, height: 100)
-                                .cornerRadius(8)
-                                
-                                VStack(alignment: .leading){
-                                    Text(restaurant.name)
-                                        .font(.title2)
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.black)
-                                    
-                                    Text("Rating: \(String(format: "%.1f", restaurant.rating))")
-                                        .foregroundColor(.gray)
-                                        .multilineTextAlignment(.leading)
-                                    Text("Reviews: \(restaurant.reviewCount)")
-                                        .foregroundColor(.gray)
-                                        .multilineTextAlignment(.leading)
-                                    Text("Price: \(restaurant.price ?? "N/A")")
-                                        .foregroundColor(.gray)
-                                        .multilineTextAlignment(.leading)
-                                }
-                                Spacer()
-                                
-                            }
+                            RestaurantOverview(restaurant: restaurant)
                         }
                         .padding(.vertical, 8)
                     }
