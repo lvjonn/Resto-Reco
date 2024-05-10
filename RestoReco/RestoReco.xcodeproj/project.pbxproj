@@ -22,6 +22,7 @@
 		526A2EF92BED116900A6CE7A /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A2EF82BED116900A6CE7A /* Tab.swift */; };
 		526A2EFB2BED149700A6CE7A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A2EFA2BED149700A6CE7A /* HomeView.swift */; };
 		526A2EFD2BEE7B0900A6CE7A /* RestaurantOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A2EFC2BEE7B0900A6CE7A /* RestaurantOverview.swift */; };
+		526A2EFF2BEE846300A6CE7A /* haymarket.json in Resources */ = {isa = PBXBuildFile; fileRef = 526A2EFE2BEE846300A6CE7A /* haymarket.json */; };
 		8CF6E5922BE8E20800E0481C /* tempData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8CF6E5912BE8E20800E0481C /* tempData.json */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		526A2EF82BED116900A6CE7A /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		526A2EFA2BED149700A6CE7A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		526A2EFC2BEE7B0900A6CE7A /* RestaurantOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantOverview.swift; sourceTree = "<group>"; };
+		526A2EFE2BEE846300A6CE7A /* haymarket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = haymarket.json; sourceTree = "<group>"; };
 		8CF6E5912BE8E20800E0481C /* tempData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tempData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,6 +130,7 @@
 		5268451B2BE39CDC00403BFC /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				526A2EFE2BEE846300A6CE7A /* haymarket.json */,
 				8CF6E5912BE8E20800E0481C /* tempData.json */,
 				526A2EF62BECF7F000A6CE7A /* export.json */,
 				5268451C2BE39D0F00403BFC /* YelpFusionAPI.swift */,
@@ -195,6 +198,7 @@
 			files = (
 				526845122BE39CC900403BFC /* Preview Assets.xcassets in Resources */,
 				526A2EF72BECF7F100A6CE7A /* export.json in Resources */,
+				526A2EFF2BEE846300A6CE7A /* haymarket.json in Resources */,
 				8CF6E5922BE8E20800E0481C /* tempData.json in Resources */,
 				5268450F2BE39CC900403BFC /* Assets.xcassets in Resources */,
 			);
