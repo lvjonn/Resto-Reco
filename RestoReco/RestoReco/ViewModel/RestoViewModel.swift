@@ -46,7 +46,7 @@ class RestoViewModel: ObservableObject{
         }
         return restaurants
     }
-    
+     
     func exportData(){
         let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted

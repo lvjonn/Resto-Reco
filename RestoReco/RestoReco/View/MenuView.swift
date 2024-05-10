@@ -4,6 +4,16 @@ struct MenuView: View {
     @EnvironmentObject var restoViewModel: RestoViewModel
     @State private var searchText = ""
     
+    var filteredRestaurants: [RestaurantModel] {
+        if searchText.isEmpty {
+            // If searchText is empty, return all restaurants
+            return restoViewModel.restaurants
+        } else {
+            // Filter restaurants based on searchText
+            return restoViewModel.restaurants.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        }
+    }
+    
     var body: some View {
         NavigationStack{
             VStack {
@@ -14,7 +24,8 @@ struct MenuView: View {
                     .foregroundColor(.red)
                     .foregroundStyle(.tint)
                     .padding(.bottom)
-            
+                
+                // Search bar
                 HStack {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.gray)
@@ -29,7 +40,7 @@ struct MenuView: View {
                 .padding(.horizontal)
                 
                 // text purpose to see searchText value
-                Text(searchText)
+//                Text(searchText)
                 
                 // categories
                 HStack(spacing: 10) {
@@ -51,7 +62,8 @@ struct MenuView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
                 
-                List(restoViewModel.restaurants, id: \.id) { restaurant in
+                // List of filtered restaurants
+                List(filteredRestaurants, id: \.id) { restaurant in
                     NavigationLink(destination: RestaurantDetailsView(/*pass in restaurant*/)){
                         VStack(alignment: .leading, spacing: 8) {
                             HStack(spacing: 20) {
@@ -91,6 +103,48 @@ struct MenuView: View {
                 }
                 .listStyle(PlainListStyle())
                 .padding(.horizontal)
+                
+                // old one - without searching option
+//                List(restoViewModel.restaurants, id: \.id) { restaurant in
+//                    NavigationLink(destination: RestaurantDetailsView(/*pass in restaurant*/)){
+//                        VStack(alignment: .leading, spacing: 8) {
+//                            HStack(spacing: 20) {
+//                                AsyncImage(url: URL(string: restaurant.imageUrl ?? "")) { image in
+//                                    image
+//                                        .resizable()
+//                                        .aspectRatio(contentMode: .fit)
+//                                        .cornerRadius(10)
+//                                } placeholder: {
+//                                    ProgressView()
+//                                }
+//                                .frame(width: 100, height: 100)
+//                                .cornerRadius(8)
+//                                
+//                                VStack(alignment: .leading){
+//                                    Text(restaurant.name)
+//                                        .font(.title2)
+//                                        .fontWeight(.bold)
+//                                        .foregroundColor(.black)
+//                                    
+//                                    Text("Rating: \(String(format: "%.1f", restaurant.rating))")
+//                                        .foregroundColor(.gray)
+//                                        .multilineTextAlignment(.leading)
+//                                    Text("Reviews: \(restaurant.reviewCount)")
+//                                        .foregroundColor(.gray)
+//                                        .multilineTextAlignment(.leading)
+//                                    Text("Price: \(restaurant.price ?? "N/A")")
+//                                        .foregroundColor(.gray)
+//                                        .multilineTextAlignment(.leading)
+//                                }
+//                                Spacer()
+//                                
+//                            }
+//                        }
+//                        .padding(.vertical, 8)
+//                    }
+//                }
+//                .listStyle(PlainListStyle())
+//                .padding(.horizontal)
                 
             }
         }
