@@ -63,4 +63,9 @@ class RestoViewModel: ObservableObject{
     }
     
     
+    func randomRestaurant() -> RestaurantModel?{
+        return restaurants.randomElement()
+    }
+    
+    
 }

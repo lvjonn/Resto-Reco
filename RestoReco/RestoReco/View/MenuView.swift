@@ -14,12 +14,6 @@ struct MenuView: View {
                     .foregroundColor(.red)
                     .foregroundStyle(.tint)
                     .padding(.bottom)
-                
-//                Text("RestoReco")
-//                    .font(.largeTitle)
-//                    .fontWeight(.bold)
-//                    .foregroundColor(.red)
-//                    .padding(.bottom, 20)
             
                 HStack {
                     Image(systemName: "magnifyingglass")
@@ -65,6 +59,7 @@ struct MenuView: View {
                                     image
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(10)
                                 } placeholder: {
                                     ProgressView()
                                 }
@@ -77,7 +72,7 @@ struct MenuView: View {
                                         .fontWeight(.bold)
                                         .foregroundColor(.black)
                                     
-                                    Text("Rating: \(restaurant.rating)")
+                                    Text("Rating: \(String(format: "%.1f", restaurant.rating))")
                                         .foregroundColor(.gray)
                                         .multilineTextAlignment(.leading)
                                     Text("Reviews: \(restaurant.reviewCount)")
@@ -98,7 +93,6 @@ struct MenuView: View {
                 .padding(.horizontal)
                 
             }
-//            .padding()
         }
     }
 }

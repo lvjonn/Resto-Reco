@@ -9,7 +9,7 @@ import Foundation
 
 enum Tab: String, CaseIterable{
     case restaurants = "Restaurants"
-    case planner = "Planer"
+    case planner = "Planner"
     case shuffle = "Shuffle"
     case toporbottom = "TopOrBottom"
     

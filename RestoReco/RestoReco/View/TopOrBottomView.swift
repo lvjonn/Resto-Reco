@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct TopOrBottomView: View {
+    @EnvironmentObject var restoViewModel: RestoViewModel
+    
     var body: some View {
-        Text("Top Or Bottom View")
+        VStack{
+            
+        }
     }
 }
 
 #Preview {
-    TopOrBottomView()
+    TopOrBottomView().environmentObject(RestoViewModel())
 }
