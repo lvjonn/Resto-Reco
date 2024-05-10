@@ -71,6 +71,22 @@ class RestoViewModel: ObservableObject{
             }
     }
     
+    func changeOptionOne(){
+        while(true){
+            optionOne = randomRestaurant()
+            if optionOne?.id != optionTwo?.id{
+                break
+            }
+        }
+    }
+    func changeOptionTwo(){
+        while(true){
+            optionTwo = randomRestaurant()
+            if optionOne?.id != optionTwo?.id{
+                break
+            }
+        }
+    }
     
     func randomRestaurant() -> RestaurantModel?{
         return restaurants.randomElement()

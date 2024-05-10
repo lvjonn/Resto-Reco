@@ -18,7 +18,7 @@ struct TopOrBottomView: View {
                 Button(action: {
                     choiceCount += 1
                     topOrBottom = "top"
-                    restoViewModel.optionTwo = restoViewModel.randomRestaurant()
+                    restoViewModel.changeOptionTwo()
                 }){
                     if let unwrapped = restoViewModel.optionOne{
                         RestaurantOverview(restaurant: unwrapped)
@@ -43,7 +43,7 @@ struct TopOrBottomView: View {
                 Button(action: {
                     choiceCount += 1
                     topOrBottom = "bottom"
-                    restoViewModel.optionOne = restoViewModel.randomRestaurant()
+                    restoViewModel.changeOptionOne()
                 }){
                     if let unwrapped = restoViewModel.optionTwo{
                         RestaurantOverview(restaurant: unwrapped)
