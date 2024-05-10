@@ -22,7 +22,7 @@ enum Tab: String, CaseIterable{
         case .shuffle:
             return "shuffle"
         case .toporbottom:
-            return "arrowshape.left.arrowshape.right.fill"
+            return "arrow.up.arrow.down"
         }
     }
     

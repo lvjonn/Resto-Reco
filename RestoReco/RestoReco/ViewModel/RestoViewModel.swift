@@ -11,6 +11,8 @@ class RestoViewModel: ObservableObject{
     
     @Published var restaurants: [RestaurantModel] = []
     private var yelpApi = YelpFusionAPI()
+    var optionOne: RestaurantModel?
+    var optionTwo: RestaurantModel?
     
     init(){
 //        yelpApi.searchBusinesses(location: "Sydney") { result in
@@ -21,7 +23,14 @@ class RestoViewModel: ObservableObject{
 //                print("Failed to fetch restaurants: \(error)")
 //            }
 //        }
-                restaurants = load()
+        restaurants = load()
+        optionOne = randomRestaurant()
+        while(true){
+            optionTwo = randomRestaurant()
+            if optionOne?.id != optionTwo?.id{ //ensures its not the same.
+                break
+            }
+        }
     }
     
     //load json data due to API limits.
