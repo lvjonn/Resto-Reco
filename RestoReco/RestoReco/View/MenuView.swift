@@ -38,9 +38,7 @@ struct MenuView: View {
                         .foregroundColor(.black)
                 }
                 .padding(.horizontal)
-                
-                // text purpose to see searchText value
-//                Text(searchText)
+                Spacer()
                 
                 // categories
                 HStack(spacing: 10) {
@@ -64,7 +62,8 @@ struct MenuView: View {
                 
                 // List of filtered restaurants
                 List(filteredRestaurants, id: \.id) { restaurant in
-                    NavigationLink(destination: RestaurantDetailsView(/*pass in restaurant*/)){
+                    NavigationLink(destination: RestaurantDetailsView(/*pass in restaurant*/
+                        restaurant: restaurant)) {
                         VStack(alignment: .leading, spacing: 8) {
                             HStack(spacing: 20) {
                                 AsyncImage(url: URL(string: restaurant.imageUrl ?? "")) { image in
