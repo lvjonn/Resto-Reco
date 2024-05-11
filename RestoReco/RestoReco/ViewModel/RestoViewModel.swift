@@ -14,8 +14,9 @@ class RestoViewModel: ObservableObject{
     var optionOne: RestaurantModel?
     var optionTwo: RestaurantModel?
     
-    var planned: [RestaurantModel] = []
-    var history: [RestaurantModel] = []
+    
+    
+    var planner: [PlannerModel] = []
     
     init(){
         //Use this if there are still available API requests, otherwise, use the cached data.
@@ -27,7 +28,7 @@ class RestoViewModel: ObservableObject{
 //                print("Failed to fetch restaurants: \(error)")
 //            }
 //        }
-        restaurants = load()
+        restaurants = loadRestaurants()
         optionOne = randomRestaurant()
         while(true){
             optionTwo = randomRestaurant()
@@ -35,16 +36,16 @@ class RestoViewModel: ObservableObject{
                 break
             }
         }
-        planned.append(randomRestaurant()!)
-        planned.append(randomRestaurant()!)
-        planned.append(randomRestaurant()!)
-        history.append(randomRestaurant()!)
-        history.append(randomRestaurant()!)
-        history.append(randomRestaurant()!)
+        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
+        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
+        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
+        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
+        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
+        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
     }
     
     //load json data due to API limits.
-    func load() -> [RestaurantModel] {
+    func loadRestaurants() -> [RestaurantModel] {
         var restaurants: [RestaurantModel] = []
         
         // Get the URL for the tempData.json file
@@ -66,19 +67,41 @@ class RestoViewModel: ObservableObject{
         return restaurants
     }
      
-    func exportData(){
+    func saveRestaurants(){
         let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
 
             do {
                 let data = try encoder.encode(restaurants)
                 let projectFolderURL = URL(fileURLWithPath: #file).deletingLastPathComponent().deletingLastPathComponent()
-                let fileURL = projectFolderURL.appendingPathComponent("Services/export.json")
+                let fileURL = projectFolderURL.appendingPathComponent("Model/planner.json")
                 try data.write(to: fileURL)
                 print("Restaurants saved to: \(fileURL)")
             } catch {
                 print("Error saving restaurants: \(error)")
             }
+    }
+    
+    func loadPlanner() -> [PlannerModel] {
+        var restaurants: [PlannerModel] = []
+        
+        // Get the URL for the tempData.json file
+        guard let url = Bundle.main.url(forResource: "planner", withExtension: "json") else {
+            fatalError("Couldn't find planner.json in the app bundle.")
+        }
+        
+        do {
+            // Load the JSON data from the file
+            let data = try Data(contentsOf: url)
+            
+            // Decode the JSON data into an array of RestaurantModel objects
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            restaurants = try decoder.decode([PlannerModel].self, from: data)
+        } catch {
+            fatalError("Couldn't parse export.json as [RestaurantModel]: \(error)")
+        }
+        return restaurants
     }
     
     func changeOptionOne(){
@@ -101,6 +124,7 @@ class RestoViewModel: ObservableObject{
     func randomRestaurant() -> RestaurantModel?{
         return restaurants.randomElement()
     }
+    
     
     
 }

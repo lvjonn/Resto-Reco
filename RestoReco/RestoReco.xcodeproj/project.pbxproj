@@ -23,6 +23,8 @@
 		526A2EFB2BED149700A6CE7A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A2EFA2BED149700A6CE7A /* HomeView.swift */; };
 		526A2EFD2BEE7B0900A6CE7A /* RestaurantOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A2EFC2BEE7B0900A6CE7A /* RestaurantOverview.swift */; };
 		526A2EFF2BEE846300A6CE7A /* haymarket.json in Resources */ = {isa = PBXBuildFile; fileRef = 526A2EFE2BEE846300A6CE7A /* haymarket.json */; };
+		526A2F012BEFBCDA00A6CE7A /* planner.json in Resources */ = {isa = PBXBuildFile; fileRef = 526A2F002BEFBCDA00A6CE7A /* planner.json */; };
+		526A2F032BEFC30C00A6CE7A /* AddPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A2F022BEFC30C00A6CE7A /* AddPlannerView.swift */; };
 		8CF6E5922BE8E20800E0481C /* tempData.json in Resources */ = {isa = PBXBuildFile; fileRef = 8CF6E5912BE8E20800E0481C /* tempData.json */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,8 @@
 		526A2EFA2BED149700A6CE7A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		526A2EFC2BEE7B0900A6CE7A /* RestaurantOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantOverview.swift; sourceTree = "<group>"; };
 		526A2EFE2BEE846300A6CE7A /* haymarket.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = haymarket.json; sourceTree = "<group>"; };
+		526A2F002BEFBCDA00A6CE7A /* planner.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = planner.json; path = RestoReco/Services/planner.json; sourceTree = SOURCE_ROOT; };
+		526A2F022BEFC30C00A6CE7A /* AddPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlannerView.swift; sourceTree = "<group>"; };
 		8CF6E5912BE8E20800E0481C /* tempData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = tempData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +105,7 @@
 			children = (
 				5268451E2BE3B1D000403BFC /* RestaurantModel.swift */,
 				526A2EF82BED116900A6CE7A /* Tab.swift */,
+				526A2F002BEFBCDA00A6CE7A /* planner.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 				526A2EF22BE8CB0400A6CE7A /* PlannerView.swift */,
 				526A2EFA2BED149700A6CE7A /* HomeView.swift */,
 				526A2EFC2BEE7B0900A6CE7A /* RestaurantOverview.swift */,
+				526A2F022BEFC30C00A6CE7A /* AddPlannerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +204,7 @@
 			files = (
 				526845122BE39CC900403BFC /* Preview Assets.xcassets in Resources */,
 				526A2EF72BECF7F100A6CE7A /* export.json in Resources */,
+				526A2F012BEFBCDA00A6CE7A /* planner.json in Resources */,
 				526A2EFF2BEE846300A6CE7A /* haymarket.json in Resources */,
 				8CF6E5922BE8E20800E0481C /* tempData.json in Resources */,
 				5268450F2BE39CC900403BFC /* Assets.xcassets in Resources */,
@@ -222,6 +229,7 @@
 				526A2EEB2BE8BDB700A6CE7A /* RestoViewModel.swift in Sources */,
 				526A2EF92BED116900A6CE7A /* Tab.swift in Sources */,
 				526A2EED2BE8CAB500A6CE7A /* RestaurantDetailsView.swift in Sources */,
+				526A2F032BEFC30C00A6CE7A /* AddPlannerView.swift in Sources */,
 				5268450B2BE39CC700403BFC /* RestoRecoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
