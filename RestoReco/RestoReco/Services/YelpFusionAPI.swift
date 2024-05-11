@@ -8,7 +8,7 @@
 import Foundation
 
 class YelpFusionAPI{
-    
+    //hard coded API key for tutor's use only.
     let apiKey = "qx5DtbKFg4QsLSR5wvD03rBLYzbpE_9WfMkqE-8pPRJzfJWBYafTpWbKA60jc3OgmAb07oWWsZ1EpvTt7KsFAWA5ofFfujC5lapEBuReGF5xGRKDgpcxfqUZM08zZnYx"
     
     func searchBusinesses(location: String, categories: String? = nil, completion: @escaping (Result<[RestaurantModel], Error>) -> Void) {

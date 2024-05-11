@@ -18,6 +18,7 @@ class RestoViewModel: ObservableObject{
     var history: [RestaurantModel] = []
     
     init(){
+        //Use this if there are still available API requests, otherwise, use the cached data.
 //        yelpApi.searchBusinesses(location: "Sydney") { result in
 //            switch result {
 //            case .success(let fetchedRestaurants):

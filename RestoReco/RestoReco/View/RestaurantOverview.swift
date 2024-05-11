@@ -21,7 +21,7 @@ struct RestaurantOverview: View{
             } placeholder: {
                 ProgressView()
             }
-            .frame(width: 100, height: 100)
+            .frame(width: 125, height: 125)
             .cornerRadius(8)
             
             VStack(alignment: .leading){
