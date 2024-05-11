@@ -57,6 +57,15 @@ struct TopOrBottomView: View {
                 }else{
                     //choice view
                     VStack{
+                        Spacer()
+                        Text("Winner!") //change to get date of plan
+                            .font(.title)
+                            .foregroundColor(.red)
+                            .fontWeight(.bold)
+                            .padding(.vertical, 5)
+                            .padding(.horizontal,15)
+                            .background(Color(Color.orange).opacity(0.1))
+                            .clipShape(Capsule())
                         if topOrBottom == "top"{
                             if let unwrapped = restoViewModel.optionOne{
                                 NavigationLink(destination: RestaurantDetailsView(restaurant: unwrapped)){
@@ -72,6 +81,7 @@ struct TopOrBottomView: View {
                                 }
                             }
                         }
+                        Spacer()
                         Button(action:{
                             choiceCount = 0
                         }){
