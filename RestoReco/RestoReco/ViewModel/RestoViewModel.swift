@@ -14,6 +14,9 @@ class RestoViewModel: ObservableObject{
     var optionOne: RestaurantModel?
     var optionTwo: RestaurantModel?
     
+    var planned: [RestaurantModel] = []
+    var history: [RestaurantModel] = []
+    
     init(){
 //        yelpApi.searchBusinesses(location: "Sydney") { result in
 //            switch result {
@@ -31,6 +34,12 @@ class RestoViewModel: ObservableObject{
                 break
             }
         }
+        planned.append(randomRestaurant()!)
+        planned.append(randomRestaurant()!)
+        planned.append(randomRestaurant()!)
+        history.append(randomRestaurant()!)
+        history.append(randomRestaurant()!)
+        history.append(randomRestaurant()!)
     }
     
     //load json data due to API limits.
