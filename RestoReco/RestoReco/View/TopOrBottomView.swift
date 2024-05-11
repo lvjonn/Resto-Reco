@@ -11,6 +11,8 @@ struct TopOrBottomView: View {
     @EnvironmentObject var restoViewModel: RestoViewModel
     @State var choiceCount = 0
     @State private var topOrBottom = ""
+    @State var show = false
+    @State var winner: RestaurantModel? = nil
     
     var body: some View {
         NavigationStack{
@@ -20,6 +22,7 @@ struct TopOrBottomView: View {
                         Button(action: {
                             choiceCount += 1
                             topOrBottom = "top"
+                            winner = restoViewModel.optionOne
                             restoViewModel.changeOptionTwo()
                         }){
                             if let unwrapped = restoViewModel.optionOne{
@@ -45,6 +48,7 @@ struct TopOrBottomView: View {
                         Button(action: {
                             choiceCount += 1
                             topOrBottom = "bottom"
+                            winner = restoViewModel.optionTwo
                             restoViewModel.changeOptionOne()
                         }){
                             if let unwrapped = restoViewModel.optionTwo{
@@ -72,6 +76,10 @@ struct TopOrBottomView: View {
                                     RestaurantOverview(restaurant: unwrapped)
                                         .padding()
                                 }
+                                Button(action:{show = true}){
+                                    Text("Add to Planner")
+                                }
+                                .buttonStyle(CustomButtonStyle())
                             }
                         }else{
                             if let unwrapped = restoViewModel.optionTwo{
@@ -102,6 +110,12 @@ struct TopOrBottomView: View {
                 }
             }
         }
+        .sheet(isPresented: $show, content: {
+            if let unwrapped = winner{
+                AddPlannerView(restaurant: unwrapped)
+                    .presentationDetents([.medium,.large])
+            }
+        })
         
     }
 }
