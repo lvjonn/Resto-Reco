@@ -76,7 +76,7 @@ struct RestaurantDetailsView: View {
                         .font(.title)
                         .foregroundColor(.white)
                         .padding()
-                        .background(Color.black.opacity(0.6))
+                        .background(Color.red.opacity(0.6))
                         .clipShape(Circle())
                 }
                 .padding(.bottom, 20)
