@@ -30,6 +30,7 @@ struct RestaurantDetailsView: View {
                 if showDetails { // Show restaurant details if flag is true
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundColor(Color(UIColor.systemBackground)) // Set background color
+                        .padding(.horizontal, -20)
                         .padding(.top, 50) // Adjust top padding to overlap slightly with map
                         .padding()
                         .overlay(
@@ -39,21 +40,41 @@ struct RestaurantDetailsView: View {
                                     .fontWeight(.bold)
                                     .padding(.bottom, 8) // Add padding to the title
                                 Text("Rating: \(String(format: "%.1f", restaurant.rating))")
-                                Text("Reviews: \(restaurant.reviewCount)")
-                                Text("Price: \(restaurant.price ?? "N/A")")
-                                Text("Location: \(restaurant.location.address1)")
-                                Text("Phone: \(restaurant.phone)")
-                                
-                                AsyncImage(url: URL(string: restaurant.imageUrl ?? "")) { image in
-                                    image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .cornerRadius(10)
-                                } placeholder: {
-                                    ProgressView()
+                                HStack {
+                                    Image(systemName: "info.circle")
+                                    Text("\(restaurant.reviewCount)")
                                 }
-                                .frame(width: 200, height: 200)
-                                .cornerRadius(8)
+                                HStack {
+                                    Image(systemName: "dollarsign.circle")
+                                    Text("\(restaurant.price ?? "N/A")")
+                                }
+                                HStack {
+                                    Image(systemName: "location")
+                                }
+                                VStack(alignment: .leading) {
+                                    Text("\(restaurant.location.displayAddress.prefix(2).joined(separator: ", "))")
+
+                                }
+                                HStack {
+                                    Image(systemName: "phone.down")
+                                    Text("\(restaurant.phone)")
+                                }
+                                
+                                HStack {
+                                    Image(systemName: "photo")
+                                }
+                                VStack {
+                                    AsyncImage(url: URL(string: restaurant.imageUrl ?? "")) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .cornerRadius(10)
+                                    } placeholder: {
+                                        ProgressView()
+                                    }
+                                    .frame(width: 200, height: 200)
+                                    .cornerRadius(8)
+                                }
                             }
                             .foregroundColor(.black)
                         )

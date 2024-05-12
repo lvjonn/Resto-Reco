@@ -8,7 +8,8 @@ struct MenuView: View {
         if searchText.isEmpty {
             // If searchText is empty, return all restaurants
             return restoViewModel.restaurants
-        } else {
+        }
+        else {
             // Filter restaurants based on searchText
             return restoViewModel.restaurants.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         }
@@ -42,7 +43,9 @@ struct MenuView: View {
                 
                 // categories
                 HStack(spacing: 10) {
-                    Button(action: {}) {
+                    Button(action: {
+                        searchText = ""
+                    }) {
                         Text("All")
                     }
                     .buttonStyle(CustomButtonStyle())
