@@ -20,14 +20,14 @@ class RestoViewModel: ObservableObject{
     
     init(){
         //Use this if there are still available API requests, otherwise, use the cached data.
-//        yelpApi.searchBusinesses(location: "Sydney") { result in
-//            switch result {
-//            case .success(let fetchedRestaurants):
-//                self.restaurants = fetchedRestaurants
-//            case .failure(let error):
-//                print("Failed to fetch restaurants: \(error)")
-//            }
-//        }
+        //        yelpApi.searchBusinesses(location: "Sydney") { result in
+        //            switch result {
+        //            case .success(let fetchedRestaurants):
+        //                self.restaurants = fetchedRestaurants
+        //            case .failure(let error):
+        //                print("Failed to fetch restaurants: \(error)")
+        //            }
+        //        }
         restaurants = loadRestaurants()
         optionOne = randomRestaurant()
         while(true){
@@ -61,27 +61,34 @@ class RestoViewModel: ObservableObject{
         }
         return restaurants
     }
-     
+    
     func savePlanner(){
         let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
-
-            do {
-                let data = try encoder.encode(planner)
-                let projectFolderURL = URL(fileURLWithPath: #file).deletingLastPathComponent().deletingLastPathComponent()
-                let fileURL = projectFolderURL.appendingPathComponent("Model/planner.json")
-                try data.write(to: fileURL)
-                print("Restaurants saved to: \(fileURL)")
-            } catch {
-                print("Error saving restaurants: \(error)")
+        encoder.outputFormatting = .prettyPrinted
+        
+        do {
+            let data = try encoder.encode(planner)
+            guard let fileURL = filePathInDocumentsDirectory(for: "planner.json") else {
+                fatalError("Couldn't find planner.json in the app bundle.")
             }
+            try data.write(to: fileURL)
+            print("Restaurants saved to: \(fileURL)")
+        } catch {
+            print("Error saving restaurants: \(error)")
+        }
     }
+    
+    private func filePathInDocumentsDirectory(for filename: String) -> URL? {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0].appendingPathComponent(filename)
+    }
+
     
     func loadPlanner() -> [PlannerModel] {
         var restaurants: [PlannerModel] = []
         
         // Get the URL for the tempData.json file
-        guard let url = Bundle.main.url(forResource: "planner", withExtension: "json") else {
+        guard let url = filePathInDocumentsDirectory(for: "planner.json") else {
             fatalError("Couldn't find planner.json in the app bundle.")
         }
         
@@ -94,7 +101,7 @@ class RestoViewModel: ObservableObject{
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             restaurants = try decoder.decode([PlannerModel].self, from: data)
         } catch {
-            fatalError("Couldn't parse export.json as [RestaurantModel]: \(error)")
+            fatalError("Couldn't parse planner.json as [PlannerModel]: \(error)")
         }
         return restaurants
     }
@@ -134,6 +141,13 @@ class RestoViewModel: ObservableObject{
         }
         return filteredPlanner
     }
-
+    
+    private func deletePlanner(planned: PlannerModel) {
+        if let index = planner.firstIndex(where: { $0.id == planned.id }) {
+            planner.remove(at:index)
+        }
+        savePlanner()
+    }
+    
     
 }
