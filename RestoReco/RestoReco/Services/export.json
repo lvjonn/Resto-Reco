@@ -1554,55 +1554,7 @@
     "isClosed" : false,
     "imageUrl" : "https:\/\/s3-media1.fl.yelpcdn.com\/bphoto\/jRRihZM0LwTK8K8jTGoOFA\/o.jpg"
   },
-  {
-    "id" : "3vMY_oY5fe-msMLgtJgUVA",
-    "alias" : "the-barber-shop-sydney",
-    "location" : {
-      "address3" : "",
-      "state" : "NSW",
-      "zipCode" : "2000",
-      "address1" : "89 York St",
-      "city" : "Sydney",
-      "country" : "AU",
-      "displayAddress" : [
-        "89 York St",
-        "Sydney New South Wales 2000",
-        "Australia"
-      ],
-      "address2" : ""
-    },
-    "url" : "https:\/\/www.yelp.com\/biz\/the-barber-shop-sydney?adjust_creative=8dSEyRFsvMYfFQzTDSi1Ag&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=8dSEyRFsvMYfFQzTDSi1Ag",
-    "distance" : 872.7742261844061,
-    "rating" : 4.4,
-    "phone" : "+61292999699",
-    "categories" : [
-      {
-        "title" : "Bars",
-        "alias" : "bars"
-      },
-      {
-        "alias" : "restaurants",
-        "title" : "Restaurants"
-      }
-    ],
-    "imageUrl" : "https:\/\/s3-media1.fl.yelpcdn.com\/bphoto\/Vw1O7v3BVZiDNHf7O0r5Ig\/o.jpg",
-    "price" : "$$",
-    "transactions" : [
-
-    ],
-    "reviewCount" : 37,
-    "name" : "The Barber Shop",
-    "coordinates" : {
-      "latitude" : -33.869624,
-      "longitude" : 151.206005
-    },
-    "attributes" : {
-
-    },
-    "displayPhone" : "+61 2 9299 9699",
-    "isClosed" : false
-  },
-  {
+    {
     "phone" : "+61292412277",
     "name" : "Four Frogs Creperie Circular Quay",
     "transactions" : [

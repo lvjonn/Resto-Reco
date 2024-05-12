@@ -15,7 +15,7 @@ struct AddPlannerView: View {
     var body: some View {
         VStack{
             Spacer()
-            RestaurantOverview(restaurant: restaurant)
+            MoreDetails(restaurant: restaurant)
             HStack{
                 Text("Date:")
                     .font(.title3)
@@ -23,12 +23,12 @@ struct AddPlannerView: View {
                 DatePicker("Schedule:", selection: $selectedDate)
                     .colorMultiply(Color.black)
                     .colorInvert()
-                    .datePickerStyle(DefaultDatePickerStyle()) // Use a different style if desired
-                    .labelsHidden() // Hide the "Date" label
-                    .background(Color.red.opacity(0.9)) // Add a background color
-                    .cornerRadius(10) // Add corner radius
-                    .shadow(radius: 5) // Add a shadow
-                    .padding() // Add additional padding
+                    .datePickerStyle(DefaultDatePickerStyle())
+                    .labelsHidden() 
+                    .background(Color.red.opacity(0.9))
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+                    .padding()
             }
             Spacer()
             Button("Add to Planner", action: {})
@@ -37,6 +37,51 @@ struct AddPlannerView: View {
         
     }
 }
+
+struct MoreDetails: View {
+    let restaurant: RestaurantModel
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Spacer()
+            HStack{
+                Spacer()
+                if let imageUrl = restaurant.imageUrl, let url = URL(string: imageUrl) {
+                    AsyncImage(url: url) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .frame(height: 200)
+                    .cornerRadius(8)
+                    .padding(.top, 15)
+                }
+                Spacer()
+            }
+
+            VStack(alignment: .leading){
+                Text(restaurant.name)
+                    .font(.title)
+                    .fontWeight(.bold)
+                Text("Address: \(restaurant.location.displayAddress.joined(separator: ", "))")
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(2)
+                Text("Phone: \(restaurant.phone)")
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.leading)
+                Text("\(restaurant.attributes.menuUrl ?? "")")
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.leading)
+            }.padding(.horizontal)
+            
+            Spacer()
+        }
+    }
+}
+
 
 #Preview {
     AddPlannerView(restaurant: RestoViewModel().randomRestaurant()!).environmentObject(RestoViewModel())
