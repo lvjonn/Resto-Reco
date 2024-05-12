@@ -28,7 +28,7 @@ struct ShuffleView: View {
                 // add to planner button
                 if selectedRestaurant != nil {
                     Button(action: {
-                        selectedRestaurant = restoViewModel.restaurants.randomElement()
+                        // implement add to planner
                     }) {
                         Image(systemName: "calendar")
                             .frame(width: 70)
