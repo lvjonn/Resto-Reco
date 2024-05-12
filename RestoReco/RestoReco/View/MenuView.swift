@@ -3,74 +3,33 @@ import SwiftUI
 struct MenuView: View {
     @EnvironmentObject var restoViewModel: RestoViewModel
     @State private var searchText = ""
-    @State private var isRatingAscending = false
-    @State private var isPriceAscending = false
-    @State private var isReviewCountAscending = false
+    @State private var sortOptions: [String] = [] // Array to store selected sorting
     
     var filteredRestaurants: [RestaurantModel] {
         
         var filtered = restoViewModel.restaurants
-        
+                
         // Filter restaurants based on search text
         if !searchText.isEmpty {
             filtered = filtered.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         }
         
-        // Sort restaurants based on rating
-        if isRatingAscending {
-            isPriceAscending = false
-            isReviewCountAscending = false
-        }
-        
-        filtered.sort {
-            if isRatingAscending {
-                return $0.rating > $1.rating
-            } else {
-                return $0.rating < $1.rating
-            }
-        }
-        
-        if isRatingAscending {
+        // Sort restaurants based on selected options
+        if sortOptions.isEmpty {
             return filtered
-        }
-        
-        // Sort restaurants based on price
-        if isPriceAscending {
-            isRatingAscending = false
-            isReviewCountAscending = false
-        }
-        
-        filtered.sort {
-            if isPriceAscending {
-                return $0.price ?? "" > $1.price ?? ""
-            } else {
-                return $0.price ?? "" < $1.price ?? ""
+        } else {
+            var sortedRestaurants = filtered
+            if sortOptions.contains("Rating") {
+                sortedRestaurants.sort(by: { $0.rating > $1.rating })
             }
-        }
-        
-        if isPriceAscending {
-            return filtered
-        }
-        
-        // Sort restaurants based on review count
-        if isReviewCountAscending {
-            isRatingAscending = false
-            isPriceAscending = false
-        }
-        
-        filtered.sort {
-            if isReviewCountAscending {
-                return $0.reviewCount > $1.reviewCount
-            } else {
-                return $0.reviewCount < $1.reviewCount
+            if sortOptions.contains("Price") {
+                sortedRestaurants.sort(by: { ($0.price ?? "") > ($1.price ?? "") })
             }
+            if sortOptions.contains("Review") {
+                sortedRestaurants.sort(by: { $0.reviewCount > $1.reviewCount })
+            }
+            return sortedRestaurants
         }
-        
-        if isReviewCountAscending {
-            return filtered
-        }
-        
-        return filtered
         
     }
     
@@ -101,7 +60,7 @@ struct MenuView: View {
                 Spacer()
                 
                 // categories
-                HStack(spacing: 5) {
+                HStack(spacing: 0) {
                     Button(action: {
                         searchText = ""
                     }) {
@@ -109,25 +68,24 @@ struct MenuView: View {
                     }
                     .buttonStyle(CustomButtonStyle())
                     
-                    
                     Button(action: {
-                        isRatingAscending.toggle()
+                        toggleSortOption("Rating")
                     }) {
-                        Text(isRatingAscending ? "Rate↑" : "Rate")
+                        Text(sortButtonText(for: "Rating"))
                     }
                     .buttonStyle(CustomButtonStyle())
                     
                     Button(action: {
-                        isPriceAscending.toggle()
+                        toggleSortOption("Price")
                     }) {
-                        Text(isPriceAscending ? "Price↑" : "Price")
+                        Text(sortButtonText(for: "Price"))
                     }
                     .buttonStyle(CustomButtonStyle())
                     
                     Button(action: {
-                        isReviewCountAscending.toggle()
+                        toggleSortOption("Review")
                     }) {
-                        Text(isReviewCountAscending ? "Review↑" : "Review")
+                        Text(sortButtonText(for: "Review"))
                     }
                     .buttonStyle(CustomButtonStyle())
                 }
@@ -153,6 +111,20 @@ struct MenuView: View {
                 
             }
         }
+    }
+    
+    private func toggleSortOption(_ option: String) {
+        if let index = sortOptions.firstIndex(of: option) {
+            sortOptions.remove(at: index)
+        } else {
+            sortOptions.append(option)
+        }
+    }
+    
+    // Function to generate button text based on sort option
+    private func sortButtonText(for option: String) -> String {
+        let isSelected = sortOptions.contains(option)
+        return "\(option)\(isSelected ? "↑" : "")"
     }
 }
 
