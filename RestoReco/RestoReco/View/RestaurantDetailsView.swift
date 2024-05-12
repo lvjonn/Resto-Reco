@@ -40,18 +40,24 @@ struct RestaurantDetailsView: View {
                                     .font(.title)
                                     .fontWeight(.bold)
                                     .padding(.bottom, 8) // Add padding to the title
+                                    .foregroundColor(.black)
                                 
-                                // add to planner button
-                                Button(action: {
-                                    // implement add to planner
-                                    showAddPlanner.toggle()
-                                }) {
-                                    Image(systemName: "calendar")
-                                        .font(.system(size: 30))
-                                        .frame(width: 300, height: 15)
+                                HStack {
+                                    Spacer()
+                                    // add to planner button
+                                    Button(action: {
+                                        // implement add to planner
+                                        showAddPlanner.toggle()
+                                    }) {
+    //                                    Image(systemName: "calendar")
+    //                                        .font(.system(size: 30))
+    //                                        .frame(width: 300, height: 15)
+                                        Text("Add to Planner")
+                                    }
+                                    .buttonStyle(CustomButtonStyle())
+                                    .padding(.top)
+                                    Spacer()
                                 }
-                                .buttonStyle(CustomButtonStyle())
-                                .padding(.bottom)
                                 
                                 Text("Rating: \(String(format: "%.1f", restaurant.rating))")
                                 Text("Reviews: \(restaurant.reviewCount)")
@@ -79,7 +85,8 @@ struct RestaurantDetailsView: View {
                                 HStack {
                                     Image(systemName: "photo")
                                 }
-                                VStack {
+                                HStack {
+                                    Spacer()
                                     AsyncImage(url: URL(string: restaurant.imageUrl ?? "")) { image in
                                         image
                                             .resizable()
@@ -90,9 +97,10 @@ struct RestaurantDetailsView: View {
                                     }
                                     .frame(width: 200, height: 200)
                                     .cornerRadius(8)
+                                    Spacer()
                                 }
                             }
-                            .foregroundColor(.black)
+                            .foregroundColor(.gray)
                         )
                 } else {
                     // Show a blank space if details are hidden

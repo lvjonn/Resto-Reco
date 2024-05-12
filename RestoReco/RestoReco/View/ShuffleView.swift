@@ -29,7 +29,7 @@ struct ShuffleView: View {
             if let restaurant = selectedRestaurant {
                 RestaurantDetailsView(restaurant: restaurant)
             } else {
-                Text("No restaurant selected")
+                Text("Press the button to shuffle")
                     .foregroundColor(.secondary)
                     .font(.headline)
                     .padding()
