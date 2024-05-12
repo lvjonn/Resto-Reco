@@ -108,7 +108,7 @@ struct MenuView: View {
                         Text("All")
                     }
                     .buttonStyle(CustomButtonStyle())
-
+                    
                     
                     Button(action: {
                         isRatingAscending.toggle()
@@ -138,14 +138,18 @@ struct MenuView: View {
                 List(filteredRestaurants, id: \.id) { restaurant in
                     NavigationLink(destination: RestaurantDetailsView(/*pass in restaurant*/
                         restaurant: restaurant)) {
-                        VStack(alignment: .leading, spacing: 8) {
-                            RestaurantOverview(restaurant: restaurant)
+                            VStack(alignment: .leading, spacing: 8) {
+                                RestaurantOverview(restaurant: restaurant)
+                            }
+                            .padding(.vertical, 8)
                         }
                         .padding(.vertical, 8)
-                    }
+                        .padding(.trailing)
+                        .background(Color(.systemBackground))
+                        .cornerRadius(8)
+                        .shadow(radius: 4)
                 }
                 .listStyle(PlainListStyle())
-                .padding(.horizontal)
                 
             }
         }

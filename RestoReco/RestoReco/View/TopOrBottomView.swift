@@ -27,6 +27,10 @@ struct TopOrBottomView: View {
                         }){
                             if let unwrapped = restoViewModel.optionOne{
                                 RestaurantOverview(restaurant: unwrapped)
+                                    .padding(.vertical)
+                                    .background(Color(.systemBackground))
+                                    .cornerRadius(8)
+                                    .shadow(radius: 8)
                             }
                             
                         }
@@ -53,6 +57,10 @@ struct TopOrBottomView: View {
                         }){
                             if let unwrapped = restoViewModel.optionTwo{
                                 RestaurantOverview(restaurant: unwrapped)
+                                    .padding(.vertical)
+                                    .background(Color(.systemBackground))
+                                    .cornerRadius(8)
+                                    .shadow(radius: 8)
                             }
                         }
                         .padding()
@@ -70,25 +78,37 @@ struct TopOrBottomView: View {
                             .padding(.horizontal,15)
                             .background(Color(Color.orange).opacity(0.1))
                             .clipShape(Capsule())
-                        if topOrBottom == "top"{
-                            if let unwrapped = restoViewModel.optionOne{
-                                NavigationLink(destination: RestaurantDetailsView(restaurant: unwrapped)){
-                                    RestaurantOverview(restaurant: unwrapped)
-                                        .padding()
+                        HStack{
+                            Spacer()
+                            if topOrBottom == "top"{
+                                if let unwrapped = restoViewModel.optionOne{
+                                    NavigationLink(destination: RestaurantDetailsView(restaurant: unwrapped)){
+                                        RestaurantOverview(restaurant: unwrapped)
+                                            .padding()
+                                            .background(Color(.systemBackground))
+                                            .cornerRadius(8)
+                                            .shadow(radius: 8)
+                                    }
+                                }
+                            }else{
+                                if let unwrapped = restoViewModel.optionTwo{
+                                    NavigationLink(destination: RestaurantDetailsView(restaurant: unwrapped)){
+                                        RestaurantOverview(restaurant: unwrapped)
+                                            .padding()
+                                            .background(Color(.systemBackground))
+                                            .cornerRadius(8)
+                                            .shadow(radius: 8)
+                                    }
                                 }
                             }
-                        }else{
-                            if let unwrapped = restoViewModel.optionTwo{
-                                NavigationLink(destination: RestaurantDetailsView(restaurant: unwrapped)){
-                                    RestaurantOverview(restaurant: unwrapped)
-                                        .padding()
-                                }
-                            }
+                            Spacer()
                         }
+                        .padding(.top)
                         Button(action:{show = true}){
                             Text("Add to Planner")
                         }
                         .buttonStyle(CustomButtonStyle())
+                        .padding(.top)
                         Spacer()
                         Button(action:{
                             choiceCount = 0
