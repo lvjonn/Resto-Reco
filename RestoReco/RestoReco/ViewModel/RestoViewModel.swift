@@ -143,12 +143,21 @@ class RestoViewModel: ObservableObject{
         return filteredPlanner
     }
     
-    private func deletePlanner(planned: PlannerModel) {
+    func deletePlanner(planned: PlannerModel) {
         if let index = planner.firstIndex(where: { $0.id == planned.id }) {
             planner.remove(at:index)
         }
         savePlanner()
     }
+    
+    func updatePlanner(planned: PlannerModel) {
+        if let index = planner.firstIndex(where: { $0.id == planned.id }) {
+            planner[index] = planned
+        }
+        savePlanner()
+    }
+    
+    
     
     
 }
