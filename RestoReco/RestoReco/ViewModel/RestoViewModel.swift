@@ -16,7 +16,7 @@ class RestoViewModel: ObservableObject{
     
     
     
-    var planner: [PlannerModel] = []
+    @Published var planner: [PlannerModel] = []
     
     init(){
         //Use this if there are still available API requests, otherwise, use the cached data.
@@ -36,9 +36,7 @@ class RestoViewModel: ObservableObject{
                 break
             }
         }
-        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
-        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
-        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
+        planner = loadPlanner()
     }
     
     //load json data due to API limits.
@@ -64,12 +62,12 @@ class RestoViewModel: ObservableObject{
         return restaurants
     }
      
-    func saveRestaurants(){
+    func savePlanner(){
         let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
 
             do {
-                let data = try encoder.encode(restaurants)
+                let data = try encoder.encode(planner)
                 let projectFolderURL = URL(fileURLWithPath: #file).deletingLastPathComponent().deletingLastPathComponent()
                 let fileURL = projectFolderURL.appendingPathComponent("Model/planner.json")
                 try data.write(to: fileURL)
@@ -122,6 +120,20 @@ class RestoViewModel: ObservableObject{
         return restaurants.randomElement()
     }
     
-    
+    func historyPlanner() -> [PlannerModel] {
+        let currentDate = Date()
+        let filteredPlanner = planner.filter { plannerItem in
+            return plannerItem.date < currentDate
+        }
+        return filteredPlanner
+    }
+    func plannedPlanner() -> [PlannerModel] {
+        let currentDate = Date()
+        let filteredPlanner = planner.filter { plannerItem in
+            return plannerItem.date >= currentDate
+        }
+        return filteredPlanner
+    }
+
     
 }

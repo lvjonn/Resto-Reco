@@ -11,6 +11,7 @@ struct AddPlannerView: View {
     @EnvironmentObject var restoViewModel: RestoViewModel
     @State private var selectedDate = Date()
     var restaurant: RestaurantModel
+    @Binding var show: Bool
     
     var body: some View {
         VStack{
@@ -34,7 +35,9 @@ struct AddPlannerView: View {
             }
             Spacer()
             Button("Add to Planner", action: {
-                
+                restoViewModel.planner.append(PlannerModel(restaurant: restaurant, date: selectedDate))
+                restoViewModel.savePlanner()
+                show = false
             })
                 .buttonStyle(CustomButtonStyle())
         }
@@ -89,6 +92,13 @@ struct MoreDetails: View {
 }
 
 
-#Preview {
-    AddPlannerView(restaurant: RestoViewModel().randomRestaurant()!).environmentObject(RestoViewModel())
+struct Preview: PreviewProvider {
+    static var previews: some View {
+        let binding = Binding<Bool>(
+            get: { true },
+            set: { _ in }
+        )
+        AddPlannerView(restaurant: RestoViewModel().randomRestaurant()!, show: binding)
+            .environmentObject(RestoViewModel())
+    }
 }

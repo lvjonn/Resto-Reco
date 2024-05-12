@@ -57,21 +57,21 @@ struct PlannerView: View {
             
             
             TabView (selection: self.$index){
-                List(restoViewModel.planner){ restaurant in
-                    Text("\(Date().formatted(date:.abbreviated, time: .omitted))") //change to get date of plan
+                List(restoViewModel.plannedPlanner().sorted { $0.date > $1.date }) { restaurant in
+                    Text("\(restaurant.date.formatted(date: .abbreviated, time: .omitted))")
                         .foregroundColor(.red)
                         .fontWeight(.bold)
                         .padding(.vertical, 5)
                         .padding(.horizontal,15)
-                        .background(Color(Color.orange).opacity(0.1))
+                        .background(Color.orange.opacity(0.1))
                         .clipShape(Capsule())
                     RestaurantOverview(restaurant: restaurant.restaurant)
                 }
                 .listStyle(.plain)
                 .tag(0)
                 
-                List(restoViewModel.planner){ restaurant in
-                    Text("\(Date().formatted(date:.abbreviated, time: .omitted))") //change to get date of plan
+                List(restoViewModel.historyPlanner().sorted { $0.date > $1.date }){ restaurant in
+                    Text("\(restaurant.date.formatted(date:.abbreviated, time: .omitted))")
                         .foregroundColor(.red)
                         .fontWeight(.bold)
                         .padding(.vertical, 5)

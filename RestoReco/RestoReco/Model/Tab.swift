@@ -11,7 +11,7 @@ enum Tab: String, CaseIterable{
     case restaurants = "Restaurants"
     case planner = "Planner"
     case shuffle = "Shuffle"
-    case toporbottom = "TopOrBottom"
+    case toporbottom = "Top/Bottom"
     
     var systemImage: String{
         switch self {

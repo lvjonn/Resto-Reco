@@ -61,5 +61,4 @@ struct PlannerModel: Identifiable, Codable{
     var id = UUID()
     var restaurant: RestaurantModel
     var date: Date
-    var notes: String?
 }

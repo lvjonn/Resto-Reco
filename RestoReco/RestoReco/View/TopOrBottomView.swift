@@ -112,7 +112,7 @@ struct TopOrBottomView: View {
         }
         .sheet(isPresented: $show, content: {
             if let unwrapped = winner{
-                AddPlannerView(restaurant: unwrapped)
+                AddPlannerView(restaurant: unwrapped, show: $show)
                     .presentationDetents([.medium,.large])
             }
         })
