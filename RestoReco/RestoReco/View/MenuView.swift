@@ -60,7 +60,7 @@ struct MenuView: View {
                 Spacer()
                 
                 // categories
-                HStack(spacing: 0) {
+                HStack{
                     Button(action: {
                         searchText = ""
                     }) {

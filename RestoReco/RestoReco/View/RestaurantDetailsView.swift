@@ -148,10 +148,6 @@ struct RestaurantDetailsView_Preview: PreviewProvider {
         let restoViewModel = RestoViewModel()
             RestaurantDetailsView(restaurant: sampleRestaurant)
                 .environmentObject(restoViewModel)
-
-        NavigationView {
-            RestaurantDetailsView(restaurant: sampleRestaurant)
-        }
     }
 }
 
