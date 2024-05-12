@@ -65,6 +65,7 @@ struct MenuView: View {
                         searchText = ""
                     }) {
                         Text("All")
+                            .lineLimit(1)
                     }
                     .buttonStyle(CustomButtonStyle())
                     
@@ -72,6 +73,7 @@ struct MenuView: View {
                         toggleSortOption("Rating")
                     }) {
                         Text(sortButtonText(for: "Rating"))
+                            .lineLimit(1)
                     }
                     .buttonStyle(CustomButtonStyle())
                     
@@ -79,6 +81,7 @@ struct MenuView: View {
                         toggleSortOption("Price")
                     }) {
                         Text(sortButtonText(for: "Price"))
+                            .lineLimit(1)
                     }
                     .buttonStyle(CustomButtonStyle())
                     
@@ -86,10 +89,10 @@ struct MenuView: View {
                         toggleSortOption("Review")
                     }) {
                         Text(sortButtonText(for: "Review"))
+                            .lineLimit(1)
                     }
                     .buttonStyle(CustomButtonStyle())
                 }
-                .padding(.horizontal)
                 .padding(.bottom)
                 
                 // List of filtered restaurants
