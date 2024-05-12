@@ -39,7 +39,20 @@ struct RestaurantDetailsView: View {
                                     .font(.title)
                                     .fontWeight(.bold)
                                     .padding(.bottom, 8) // Add padding to the title
+                                
+                                // add to planner button
+                                Button(action: {
+                                    // implement add to planner
+                                }) {
+                                    Image(systemName: "calendar")
+                                        .font(.system(size: 30))
+                                        .frame(width: 300, height: 15)
+                                }
+                                .buttonStyle(CustomButtonStyle())
+                                .padding(.bottom)
+                                
                                 Text("Rating: \(String(format: "%.1f", restaurant.rating))")
+                                
                                 HStack {
                                     Image(systemName: "info.circle")
                                     Text("\(restaurant.reviewCount)")

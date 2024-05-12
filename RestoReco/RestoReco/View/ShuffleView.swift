@@ -24,18 +24,6 @@ struct ShuffleView: View {
                 }
                 .buttonStyle(CustomButtonStyle())
                 .padding(.bottom)
-                
-                // add to planner button
-                if selectedRestaurant != nil {
-                    Button(action: {
-                        // implement add to planner
-                    }) {
-                        Image(systemName: "calendar")
-                            .frame(width: 70)
-                    }
-                    .buttonStyle(CustomButtonStyle())
-                    .padding(.bottom)
-                }
             }
             
             if let restaurant = selectedRestaurant {
