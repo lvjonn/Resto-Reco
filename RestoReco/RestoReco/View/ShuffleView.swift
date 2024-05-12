@@ -14,25 +14,43 @@ struct ShuffleView: View {
     var body: some View {
         VStack {
             
-            HStack(spacing: 20) {
-                // shuffle button
-                Button(action: {
-                    selectedRestaurant = restoViewModel.restaurants.randomElement()
-                }) {
-                    Image(systemName: "shuffle")
-                        .frame(width: 70)
+            ZStack{
+                if let restaurant = selectedRestaurant {
+                    RestaurantDetailsView(restaurant: restaurant)
+                    VStack{
+                        HStack(spacing: 20) {
+                            // shuffle button
+                            Button(action: {
+                                selectedRestaurant = restoViewModel.restaurants.randomElement()
+                            }) {
+                                Image(systemName: "shuffle")
+                                    .frame(width: 70)
+                            }
+                            .buttonStyle(CustomButtonStyle())
+                            .padding(.bottom)
+                        }
+                        Spacer()
+                    }
+                    .padding(.top, 70)
+                } else {
+                    VStack{
+                        HStack(spacing: 20) {
+                            // shuffle button
+                            Button(action: {
+                                selectedRestaurant = restoViewModel.restaurants.randomElement()
+                            }) {
+                                Image(systemName: "shuffle")
+                                    .frame(width: 70)
+                            }
+                            .buttonStyle(CustomButtonStyle())
+                            .padding(.bottom)
+                        }
+                        Text("Press the button to shuffle")
+                            .foregroundColor(.secondary)
+                            .font(.headline)
+                            .padding()
+                    }
                 }
-                .buttonStyle(CustomButtonStyle())
-                .padding(.bottom)
-            }
-            
-            if let restaurant = selectedRestaurant {
-                RestaurantDetailsView(restaurant: restaurant)
-            } else {
-                Text("Press the button to shuffle")
-                    .foregroundColor(.secondary)
-                    .font(.headline)
-                    .padding()
             }
         }
         .navigationTitle("Shuffle")

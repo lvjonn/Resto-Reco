@@ -37,7 +37,7 @@ struct RestaurantDetailsView: View {
                             .fontWeight(.bold)
                             .padding(.vertical, 5)
                             .padding(.horizontal,15)
-                            .background(Color.red.opacity(1))
+                            .background(Color.red.opacity(0.8))
                             .clipShape(Capsule())
                         Spacer()
                     }
