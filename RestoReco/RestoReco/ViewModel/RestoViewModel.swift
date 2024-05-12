@@ -101,7 +101,8 @@ class RestoViewModel: ObservableObject{
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             restaurants = try decoder.decode([PlannerModel].self, from: data)
         } catch {
-            fatalError("Couldn't parse planner.json as [PlannerModel]: \(error)")
+            print("Returning blank array: \(error)")
+//            fatalError("Couldn't parse planner.json as [PlannerModel]: \(error)")
         }
         return restaurants
     }
