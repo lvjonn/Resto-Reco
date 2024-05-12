@@ -54,6 +54,7 @@ struct RestaurantDetailsView: View {
                                 .padding(.bottom)
                                 
                                 Text("Rating: \(String(format: "%.1f", restaurant.rating))")
+                                Text("Reviews: \(restaurant.reviewCount)")
                                 
                                 HStack {
                                     Image(systemName: "info.circle")

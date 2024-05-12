@@ -3,16 +3,75 @@ import SwiftUI
 struct MenuView: View {
     @EnvironmentObject var restoViewModel: RestoViewModel
     @State private var searchText = ""
+    @State private var isRatingAscending = false
+    @State private var isPriceAscending = false
+    @State private var isReviewCountAscending = false
     
     var filteredRestaurants: [RestaurantModel] {
-        if searchText.isEmpty {
-            // If searchText is empty, return all restaurants
-            return restoViewModel.restaurants
+        
+        var filtered = restoViewModel.restaurants
+        
+        // Filter restaurants based on search text
+        if !searchText.isEmpty {
+            filtered = filtered.filter { $0.name.lowercased().contains(searchText.lowercased()) }
         }
-        else {
-            // Filter restaurants based on searchText
-            return restoViewModel.restaurants.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        
+        // Sort restaurants based on rating
+        if isRatingAscending {
+            isPriceAscending = false
+            isReviewCountAscending = false
         }
+        
+        filtered.sort {
+            if isRatingAscending {
+                return $0.rating > $1.rating
+            } else {
+                return $0.rating < $1.rating
+            }
+        }
+        
+        if isRatingAscending {
+            return filtered
+        }
+        
+        // Sort restaurants based on price
+        if isPriceAscending {
+            isRatingAscending = false
+            isReviewCountAscending = false
+        }
+        
+        filtered.sort {
+            if isPriceAscending {
+                return $0.price ?? "" > $1.price ?? ""
+            } else {
+                return $0.price ?? "" < $1.price ?? ""
+            }
+        }
+        
+        if isPriceAscending {
+            return filtered
+        }
+        
+        // Sort restaurants based on review count
+        if isReviewCountAscending {
+            isRatingAscending = false
+            isPriceAscending = false
+        }
+        
+        filtered.sort {
+            if isReviewCountAscending {
+                return $0.reviewCount > $1.reviewCount
+            } else {
+                return $0.reviewCount < $1.reviewCount
+            }
+        }
+        
+        if isReviewCountAscending {
+            return filtered
+        }
+        
+        return filtered
+        
     }
     
     var body: some View {
@@ -42,7 +101,7 @@ struct MenuView: View {
                 Spacer()
                 
                 // categories
-                HStack(spacing: 10) {
+                HStack(spacing: 5) {
                     Button(action: {
                         searchText = ""
                     }) {
@@ -51,14 +110,26 @@ struct MenuView: View {
                     .buttonStyle(CustomButtonStyle())
 
                     
-                    Button("List1", action: {})
-                        .buttonStyle(CustomButtonStyle())
+                    Button(action: {
+                        isRatingAscending.toggle()
+                    }) {
+                        Text(isRatingAscending ? "Rate↑" : "Rate")
+                    }
+                    .buttonStyle(CustomButtonStyle())
                     
-                    Button("List2", action: {})
-                        .buttonStyle(CustomButtonStyle())
+                    Button(action: {
+                        isPriceAscending.toggle()
+                    }) {
+                        Text(isPriceAscending ? "Price↑" : "Price")
+                    }
+                    .buttonStyle(CustomButtonStyle())
                     
-                    Button("List3", action: {})
-                        .buttonStyle(CustomButtonStyle())
+                    Button(action: {
+                        isReviewCountAscending.toggle()
+                    }) {
+                        Text(isReviewCountAscending ? "Review↑" : "Review")
+                    }
+                    .buttonStyle(CustomButtonStyle())
                 }
                 .padding(.horizontal)
                 .padding(.bottom)
