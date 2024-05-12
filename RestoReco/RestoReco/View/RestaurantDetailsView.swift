@@ -28,12 +28,26 @@ struct RestaurantDetailsView: View {
 
             // Details overlay
             VStack(alignment: .leading, spacing: 8) {
+
                 if showDetails { // Show restaurant details if flag is true
+                    HStack{
+                        Spacer()
+                        Text("Restaurant Details")
+                            .foregroundColor(.white)
+                            .fontWeight(.bold)
+                            .padding(.vertical, 5)
+                            .padding(.horizontal,15)
+                            .background(Color.red.opacity(1))
+                            .clipShape(Capsule())
+                        Spacer()
+                    }
+                    
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundColor(Color(UIColor.systemBackground)) // Set background color
                         .padding(.horizontal, -20)
-                        .padding(.top, -10) // Adjust top padding to overlap slightly with map
+                        .padding(.top) // Adjust top padding to overlap slightly with map
                         .padding()
+                        .shadow(radius: 10)
                         .overlay(
                             VStack(alignment: .leading, spacing: 8) {
                                 Text(restaurant.name)
@@ -42,49 +56,27 @@ struct RestaurantDetailsView: View {
                                     .padding(.bottom, 8) // Add padding to the title
                                     .foregroundColor(.black)
                                 
-                                HStack {
-                                    Spacer()
-                                    // add to planner button
-                                    Button(action: {
-                                        // implement add to planner
-                                        showAddPlanner.toggle()
-                                    }) {
-    //                                    Image(systemName: "calendar")
-    //                                        .font(.system(size: 30))
-    //                                        .frame(width: 300, height: 15)
-                                        Text("Add to Planner")
-                                    }
-                                    .buttonStyle(CustomButtonStyle())
-                                    .padding(.top)
-                                    Spacer()
-                                }
                                 
-                                Text("Rating: \(String(format: "%.1f", restaurant.rating))")
+                                Text("\(String(format: "%.1f", restaurant.rating)) \(Image(systemName: "star.fill")) ")
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.leading)
+                                
                                 Text("Reviews: \(restaurant.reviewCount)")
-                                
-                                HStack {
-                                    Image(systemName: "info.circle")
-                                    Text("\(restaurant.reviewCount)")
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.leading)
+                                    .lineLimit(1)
+                                if let price = restaurant.price{
+                                    Text("Price: \(price)")
+                                        .foregroundColor(.gray)
+                                        .multilineTextAlignment(.leading)
                                 }
-                                HStack {
-                                    Image(systemName: "dollarsign.circle")
-                                    Text("\(restaurant.price ?? "N/A")")
-                                }
-                                HStack {
-                                    Image(systemName: "location")
-                                }
-                                VStack(alignment: .leading) {
-                                    Text("\(restaurant.location.displayAddress.prefix(2).joined(separator: ", "))")
-
-                                }
-                                HStack {
-                                    Image(systemName: "phone.down")
-                                    Text("\(restaurant.phone)")
-                                }
-                                
-                                HStack {
-                                    Image(systemName: "photo")
-                                }
+                                Text("\(Image(systemName: "location.fill")) \(restaurant.location.displayAddress.joined(separator: ", "))")
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.leading)
+                                    .lineLimit(2)
+                                Text("\(Image(systemName: "phone.fill")) \(restaurant.phone)")
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.leading)
                                 HStack {
                                     Spacer()
                                     AsyncImage(url: URL(string: restaurant.imageUrl ?? "")) { image in
@@ -99,8 +91,23 @@ struct RestaurantDetailsView: View {
                                     .cornerRadius(8)
                                     Spacer()
                                 }
+                                
+                                HStack {
+                                    Spacer()
+                                    // add to planner button
+                                    Button(action: {
+                                        // implement add to planner
+                                        showAddPlanner.toggle()
+                                    }) {
+                                        Text("Add to Planner")
+                                    }
+                                    .buttonStyle(CustomButtonStyle())
+                                    .padding(.top)
+                                    Spacer()
+                                }
                             }
                             .foregroundColor(.gray)
+                            .padding(.horizontal)
                         )
                 } else {
                     // Show a blank space if details are hidden
@@ -120,17 +127,16 @@ struct RestaurantDetailsView: View {
                     Image(systemName: showDetails ? "chevron.up.circle.fill" : "chevron.down.circle.fill")
                         .font(.title)
                         .foregroundColor(.white)
-                        .padding()
-                        .background(Color.red.opacity(0.6))
+                        .padding(.vertical)
+                        .padding(5)
+                        .background(Color.red.opacity(0.8))
                         .clipShape(Circle())
                 }
-                .padding(.bottom, 20)
-                .padding(.trailing, 20)
             }
         }
-        .navigationTitle("Restaurant Details")
         .sheet(isPresented: $showAddPlanner) {
             AddPlannerView(restaurant: restaurant, show: $showAddPlanner)
+                .presentationDetents([.medium,.large])
         }
     }
 }
