@@ -39,9 +39,6 @@ class RestoViewModel: ObservableObject{
         planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
         planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
         planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
-        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
-        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
-        planner.append(PlannerModel(restaurant: randomRestaurant()!, date: Date(), notes: "Love the chicken wings!"))
     }
     
     //load json data due to API limits.

@@ -76,10 +76,6 @@ struct TopOrBottomView: View {
                                     RestaurantOverview(restaurant: unwrapped)
                                         .padding()
                                 }
-                                Button(action:{show = true}){
-                                    Text("Add to Planner")
-                                }
-                                .buttonStyle(CustomButtonStyle())
                             }
                         }else{
                             if let unwrapped = restoViewModel.optionTwo{
@@ -89,6 +85,10 @@ struct TopOrBottomView: View {
                                 }
                             }
                         }
+                        Button(action:{show = true}){
+                            Text("Add to Planner")
+                        }
+                        .buttonStyle(CustomButtonStyle())
                         Spacer()
                         Button(action:{
                             choiceCount = 0

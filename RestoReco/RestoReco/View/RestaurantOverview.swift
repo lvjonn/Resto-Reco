@@ -31,15 +31,19 @@ struct RestaurantOverview: View{
                     .foregroundColor(.black)
                     .multilineTextAlignment(.leading)
                 
-                Text("Rating: \(String(format: "%.1f", restaurant.rating))")
+                Text("\(String(format: "%.1f", restaurant.rating)) \(Image(systemName: "star.fill")) ")
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.leading)
                 Text("Reviews: \(restaurant.reviewCount)")
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.leading)
-                Text("Price: \(restaurant.price ?? "N/A")")
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.leading)
+                    .lineLimit(1)
+                if let price = restaurant.price{
+                    Text("Price: \(price)")
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.leading)
+                }
+                
             }
             Spacer()
         }
