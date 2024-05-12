@@ -31,7 +31,7 @@ struct RestaurantDetailsView: View {
                     RoundedRectangle(cornerRadius: 16)
                         .foregroundColor(Color(UIColor.systemBackground)) // Set background color
                         .padding(.horizontal, -20)
-                        .padding(.top, 50) // Adjust top padding to overlap slightly with map
+                        .padding(.top, -10) // Adjust top padding to overlap slightly with map
                         .padding()
                         .overlay(
                             VStack(alignment: .leading, spacing: 8) {
