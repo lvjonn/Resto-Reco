@@ -53,7 +53,8 @@ struct RestaurantDetailsView: View {
                                 Text(restaurant.name)
                                     .font(.title)
                                     .fontWeight(.bold)
-                                    .padding(.bottom, 8) // Add padding to the title
+                                    .padding(.top) // Add padding to the title
+                                    .padding(.top)
                                     .foregroundColor(.black)
                                 
                                 
@@ -103,8 +104,10 @@ struct RestaurantDetailsView: View {
                                     }
                                     .buttonStyle(CustomButtonStyle())
                                     .padding(.top)
+                                    .padding(.bottom)
                                     Spacer()
                                 }
+                                .padding(.bottom)
                             }
                             .foregroundColor(.gray)
                             .padding(.horizontal)
