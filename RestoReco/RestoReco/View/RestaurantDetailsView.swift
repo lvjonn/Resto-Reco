@@ -12,6 +12,7 @@ struct RestaurantDetailsView: View {
     let restaurant: RestaurantModel // Restaurant information passed from MenuView
     @State private var region = MKCoordinateRegion()
     @State private var showDetails = true // Flag to control the display of restaurant details
+    @State private var showAddPlanner = false
 
     var body: some View {
         ZStack {
@@ -43,6 +44,7 @@ struct RestaurantDetailsView: View {
                                 // add to planner button
                                 Button(action: {
                                     // implement add to planner
+                                    showAddPlanner.toggle()
                                 }) {
                                     Image(systemName: "calendar")
                                         .font(.system(size: 30))
@@ -118,12 +120,20 @@ struct RestaurantDetailsView: View {
             }
         }
         .navigationTitle("Restaurant Details")
+        .sheet(isPresented: $showAddPlanner) {
+            AddPlannerView(restaurant: restaurant, show: $showAddPlanner)
+        }
     }
 }
 
 struct RestaurantDetailsView_Preview: PreviewProvider {
     static var previews: some View {
         let sampleRestaurant = RestaurantModel(id: "1", alias: "sample-restaurant", name: "Sample Restaurant", imageUrl: nil, isClosed: false, url: "https://example.com", reviewCount: 100, categories: [], rating: 4.5, coordinates: RestaurantModel.Coordinates(latitude: 37.7749, longitude: -122.4194), transactions: [], price: "$$", location: RestaurantModel.Location(address1: "123 Sample St", address2: nil, address3: nil, city: "Sample City", zipCode: "12345", country: "USA", state: "CA", displayAddress: ["123 Sample St", "Sample City, CA 12345"]), phone: "123-456-7890", displayPhone: "123-456-7890", distance: 1.0, attributes: RestaurantModel.Attributes(businessTempClosed: nil, menuUrl: nil, open24Hours: nil, waitlistReservation: nil))
+        
+        let restoViewModel = RestoViewModel() // RestoViewModel 인스턴스 생성
+            // RestaurantDetailsView에 RestoViewModel 제공
+            RestaurantDetailsView(restaurant: sampleRestaurant)
+                .environmentObject(restoViewModel)
 
         NavigationView {
             RestaurantDetailsView(restaurant: sampleRestaurant)
