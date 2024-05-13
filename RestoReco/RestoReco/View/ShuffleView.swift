@@ -16,6 +16,7 @@ struct ShuffleView: View {
             
             ZStack{
                 if let restaurant = selectedRestaurant {
+                    // link to RestaurantDetailsView
                     RestaurantDetailsView(restaurant: restaurant)
                     VStack{
                         HStack(spacing: 20) {
@@ -37,6 +38,7 @@ struct ShuffleView: View {
                         HStack(spacing: 20) {
                             // shuffle button
                             Button(action: {
+                                // select random restaurant
                                 selectedRestaurant = restoViewModel.restaurants.randomElement()
                             }) {
                                 Image(systemName: "shuffle")
