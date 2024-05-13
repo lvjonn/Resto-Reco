@@ -8,7 +8,7 @@
 </ul>
 
 <h1>GitHub</h1>
-<p>https://github.com/JaeHyeokSeong/CSS2</p>
+<p>https://github.com/lvjonn/Resto-Reco</p>
 
 <h1>Presentation Slide</h1>
 <p>https://www.canva.com/design/DAGE7m7qJ94/335km7T8poOthfR5av7USg/edit</p>
