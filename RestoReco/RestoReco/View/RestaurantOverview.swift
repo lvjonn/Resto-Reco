@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-//reusable view
+//reusable view for displaying restaurant overview
 struct RestaurantOverview: View{
-    var restaurant: RestaurantModel
+    var restaurant: RestaurantModel //restaurant instance
     var body: some View{
         HStack(spacing: 20) {
             Spacer()
@@ -19,7 +19,7 @@ struct RestaurantOverview: View{
                     .aspectRatio(contentMode: .fit)
                     .cornerRadius(10)
             } placeholder: {
-                ProgressView()
+                ProgressView() //loading view when image is processing.
             }
             .frame(width: 125, height: 125)
             .cornerRadius(8)

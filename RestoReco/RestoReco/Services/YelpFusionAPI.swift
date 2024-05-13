@@ -10,7 +10,7 @@ import Foundation
 class YelpFusionAPI{
     //hard coded API key for tutor's use only.
     let apiKey = "qx5DtbKFg4QsLSR5wvD03rBLYzbpE_9WfMkqE-8pPRJzfJWBYafTpWbKA60jc3OgmAb07oWWsZ1EpvTt7KsFAWA5ofFfujC5lapEBuReGF5xGRKDgpcxfqUZM08zZnYx"
-    
+    //used to search businesses
     func searchBusinesses(location: String, categories: String? = nil, completion: @escaping (Result<[RestaurantModel], Error>) -> Void) {
         var urlComponents = URLComponents(string: "https://api.yelp.com/v3/businesses/search")!
         var queryItems: [URLQueryItem] = [
@@ -44,11 +44,11 @@ class YelpFusionAPI{
             }
         }.resume()
     }
-
+    //for decoding
     struct SearchResponse: Codable {
         let businesses: [RestaurantModel]
     }
-
+    //more details regarding business
     func getBusinessDetails(forId id: String, completion: @escaping (Result<RestaurantModel, Error>) -> Void) {
         let url = URL(string: "https://api.yelp.com/v3/businesses/\(id)")!
         var request = URLRequest(url: url)

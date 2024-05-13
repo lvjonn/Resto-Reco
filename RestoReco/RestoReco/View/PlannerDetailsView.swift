@@ -69,7 +69,7 @@ struct PlannerDetailsView: View {
                 .onTapGesture {
                     hideKeyboard()
                 }
-                
+                //Date picker for schedule
                 DatePicker("Schedule:", selection: $planner.date)
                     .colorMultiply(Color.black)
                     .colorInvert()
@@ -78,7 +78,7 @@ struct PlannerDetailsView: View {
                     .background(Color.red.opacity(0.9))
                     .cornerRadius(10)
                     .shadow(radius: 5)
-                
+                //notes and text editor
                 HStack{
                     VStack(alignment: .leading){
                         Text("Notes")
@@ -100,7 +100,7 @@ struct PlannerDetailsView: View {
                     
                 }
                 .padding()
-                
+                //buttons
                 HStack{
                     Button(action:{
                         restoViewModel.updatePlanner(planned: planner)
@@ -121,6 +121,7 @@ struct PlannerDetailsView: View {
         }
     }
 }
+//prevents keyboard from being stuck on text editor.
 extension View{
     func hideKeyboard() {
         let resign = #selector(UIResponder.resignFirstResponder)

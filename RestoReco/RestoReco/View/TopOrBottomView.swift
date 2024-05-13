@@ -17,13 +17,13 @@ struct TopOrBottomView: View {
     var body: some View {
         NavigationStack{
             VStack{
-                if choiceCount < 5{
+                if choiceCount < 5{ //limit of 5 iterations of choosing.
                     VStack(alignment: .leading, spacing: 8) {
                         Button(action: {
                             choiceCount += 1
-                            topOrBottom = "top"
-                            winner = restoViewModel.optionOne
-                            restoViewModel.changeOptionTwo()
+                            topOrBottom = "top" //determines which to display at the end
+                            winner = restoViewModel.optionOne //set current choice
+                            restoViewModel.changeOptionTwo() //change other option
                         }){
                             if let unwrapped = restoViewModel.optionOne{
                                 RestaurantOverview(restaurant: unwrapped)

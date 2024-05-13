@@ -7,6 +7,7 @@
 
 import Foundation
 
+//Model for managing Tabs label, image and index.
 enum Tab: String, CaseIterable{
     case restaurants = "Restaurants"
     case planner = "Planner"

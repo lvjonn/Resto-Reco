@@ -13,9 +13,10 @@ struct HomeView: View {
     @Namespace private var animation
     
     init(){
-        UITabBar.appearance().isHidden = true
+        UITabBar.appearance().isHidden = true //prevents the view from moving up
     }
     var body: some View {
+        //View based on selected Tab
         VStack(spacing: 0){
             TabView(selection: $activeTab){
                 MenuView()
@@ -30,6 +31,8 @@ struct HomeView: View {
             TabBar()
         }
     }
+    
+    //Tab Bar Construction
     @ViewBuilder
     func TabBar(_ color: Color = .red, _ inactiveColor: Color = .red) -> some View{
         HStack(alignment: .bottom, spacing: 0){
@@ -49,7 +52,7 @@ struct HomeView: View {
         .animation(.interactiveSpring(response: 0.6, dampingFraction: 0.7, blendDuration: 0.7), value: activeTab)
     }
 }
-
+//Tab bar Elements
 struct TabItem: View{
     var color: Color
     var inactiveColor: Color

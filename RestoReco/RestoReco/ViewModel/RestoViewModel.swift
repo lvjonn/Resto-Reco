@@ -62,6 +62,7 @@ class RestoViewModel: ObservableObject{
         return restaurants
     }
     
+    //save planner to planner.json file.
     func savePlanner(){
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -77,13 +78,13 @@ class RestoViewModel: ObservableObject{
             print("Error saving restaurants: \(error)")
         }
     }
-    
+    //file path
     private func filePathInDocumentsDirectory(for filename: String) -> URL? {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0].appendingPathComponent(filename)
     }
 
-    
+    //decode json file into [PlannerModel]
     func loadPlanner() -> [PlannerModel] {
         var restaurants: [PlannerModel] = []
         
@@ -102,11 +103,10 @@ class RestoViewModel: ObservableObject{
             restaurants = try decoder.decode([PlannerModel].self, from: data)
         } catch {
             print("Returning blank array: \(error)")
-//            fatalError("Couldn't parse planner.json as [PlannerModel]: \(error)")
         }
         return restaurants
     }
-    
+    //refresh top option
     func changeOptionOne(){
         while(true){
             optionOne = randomRestaurant()
@@ -115,6 +115,7 @@ class RestoViewModel: ObservableObject{
             }
         }
     }
+    //refresh bottom option
     func changeOptionTwo(){
         while(true){
             optionTwo = randomRestaurant()
@@ -123,11 +124,11 @@ class RestoViewModel: ObservableObject{
             }
         }
     }
-    
+    //choose random restaurant
     func randomRestaurant() -> RestaurantModel?{
         return restaurants.randomElement()
     }
-    
+    //filter history data
     func historyPlanner() -> [PlannerModel] {
         let currentDate = Date()
         let filteredPlanner = planner.filter { plannerItem in
@@ -135,6 +136,7 @@ class RestoViewModel: ObservableObject{
         }
         return filteredPlanner
     }
+    //filter planned data
     func plannedPlanner() -> [PlannerModel] {
         let currentDate = Date()
         let filteredPlanner = planner.filter { plannerItem in
@@ -142,14 +144,14 @@ class RestoViewModel: ObservableObject{
         }
         return filteredPlanner
     }
-    
+    //delete planner
     func deletePlanner(planned: PlannerModel) {
         if let index = planner.firstIndex(where: { $0.id == planned.id }) {
             planner.remove(at:index)
         }
         savePlanner()
     }
-    
+    //update planner record
     func updatePlanner(planned: PlannerModel) {
         if let index = planner.firstIndex(where: { $0.id == planned.id }) {
             planner[index] = planned

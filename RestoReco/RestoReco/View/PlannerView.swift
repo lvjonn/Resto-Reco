@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlannerView: View {
     @EnvironmentObject var restoViewModel: RestoViewModel
-    @State var index = 0
+    @State var index = 0 //index for planned or history view
     
     init(){
         UITabBar.appearance().isHidden = true

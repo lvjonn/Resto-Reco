@@ -11,7 +11,7 @@ struct AddPlannerView: View {
     @EnvironmentObject var restoViewModel: RestoViewModel
     @State private var selectedDate = Date()
     var restaurant: RestaurantModel
-    @Binding var show: Bool
+    @Binding var show: Bool //connects to parent view to minimise sheet
     
     var body: some View {
         VStack{
@@ -35,9 +35,9 @@ struct AddPlannerView: View {
             }
             Spacer()
             Button("Add to Planner", action: {
-                restoViewModel.planner.append(PlannerModel(restaurant: restaurant, date: selectedDate))
-                restoViewModel.savePlanner()
-                show = false
+                restoViewModel.planner.append(PlannerModel(restaurant: restaurant, date: selectedDate)) //add to planner
+                restoViewModel.savePlanner() //save into json file.
+                show = false //hide sheet
             })
                 .buttonStyle(CustomButtonStyle())
         }
@@ -47,7 +47,7 @@ struct AddPlannerView: View {
 
 struct MoreDetails: View {
     let restaurant: RestaurantModel
-
+    //displays more details regarding restaurant.
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
