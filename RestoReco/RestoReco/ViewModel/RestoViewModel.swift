@@ -6,37 +6,48 @@
 //
 
 import Foundation
+import MapKit
 
 class RestoViewModel: ObservableObject{
     
-    @Published var restaurants: [RestaurantModel] = []
-    private var yelpApi = YelpFusionAPI()
+    @Published var restaurants: [RestaurantModel]
+    var yelpApi = YelpFusionAPI()
     @Published var optionOne: RestaurantModel?
     @Published var optionTwo: RestaurantModel?
     
-    
+//    @Published var shuffleRegion: MKCoordinateRegion
     
     @Published var planner: [PlannerModel] = []
     
     init(){
+        self.restaurants = []
         //Use this if there are still available API requests, otherwise, use the cached data.
-        yelpApi.searchBusinesses(location: "Hay Market New South Wales") { result in
+        self.yelpApi.searchBusinesses(location: "Hay Market New South Wales") { result in
             switch result {
             case .success(let fetchedRestaurants):
-                self.restaurants = fetchedRestaurants
+                DispatchQueue.main.async{
+                    self.restaurants = fetchedRestaurants
+                }
             case .failure(let error):
                 print("Failed to fetch restaurants: \(error)")
             }
         }
-        //        restaurants = loadRestaurants() //use this if using cached data
-        planner = loadPlanner()
-        setTopOrBottom()
+//                restaurants = loadRestaurants() //use this if using cached data
+        self.planner = loadPlanner()
     }
     
     func setTopOrBottom(){
+        if(restaurants.isEmpty){
+            optionOne = nil
+            optionTwo = nil
+            return
+        }
         while(true){
             optionOne = randomRestaurant()
             optionTwo = randomRestaurant()
+            if optionOne == nil || optionTwo == nil{
+                continue
+            }
             if optionOne?.id != optionTwo?.id{ //ensures its not the same.
                 break
             }

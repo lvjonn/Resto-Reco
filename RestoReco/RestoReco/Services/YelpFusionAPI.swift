@@ -38,7 +38,10 @@ class YelpFusionAPI{
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let result = try decoder.decode(SearchResponse.self, from: data)
-                completion(.success(result.businesses))
+                DispatchQueue.main.async{
+                    completion(.success(result.businesses))
+                }
+                
             } catch {
                 completion(.failure(error))
             }

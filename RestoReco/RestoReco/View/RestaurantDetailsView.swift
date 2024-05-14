@@ -9,19 +9,23 @@ import SwiftUI
 import MapKit
 
 struct RestaurantDetailsView: View {
+    @EnvironmentObject var restoViewModel: RestoViewModel
     let restaurant: RestaurantModel // Restaurant information passed from MenuView
-    @State private var region = MKCoordinateRegion()
+    @State private var region: MKCoordinateRegion
     @State private var showDetails = true // Flag to control the display of restaurant details
     @State private var showAddPlanner = false
 
+    init(restaurant: RestaurantModel){
+        self.restaurant = restaurant
+        region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: restaurant.coordinates.latitude, longitude: restaurant.coordinates.longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+    }
     var body: some View {
         ZStack {
             // Apple Map as background
             Map(coordinateRegion: $region, showsUserLocation: false, annotationItems: [restaurant]) { restaurant in
                 MapPin(coordinate: CLLocationCoordinate2D(latitude: restaurant.coordinates.latitude, longitude: restaurant.coordinates.longitude), tint: .red)
             }
-            .onAppear {
-                // Set region to display the restaurant's location on the map
+            .onChange(of: restaurant){
                 region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: restaurant.coordinates.latitude, longitude: restaurant.coordinates.longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
             }
             .edgesIgnoringSafeArea(.all)

@@ -52,21 +52,25 @@ struct MenuView: View {
                         .cornerRadius(8)
                         .foregroundColor(.black)
                     Button(action:{
+                        restoViewModel.yelpApi.searchBusinesses(location: searchText) { result in
+                            switch result {
+                            case .success(let fetchedRestaurants):
+                                DispatchQueue.main.async{
+                                    restoViewModel.restaurants = fetchedRestaurants
+                                    restoViewModel.setTopOrBottom()
+                                }
+                            case .failure(let error):
+                                print("Failed to fetch restaurants: \(error)")
+                                DispatchQueue.main.async{
+                                    restoViewModel.restaurants = []
+                                }
+                            }
+                        }
+                        
                     }){
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.white)
                             .padding(.leading, 1)
-                            .onTapGesture {
-                                YelpFusionAPI().searchBusinesses(location: searchText) { result in
-                                    switch result {
-                                    case .success(let fetchedRestaurants):
-                                        restoViewModel.restaurants = fetchedRestaurants
-                                    case .failure(let error):
-                                        print("Failed to fetch restaurants: \(error)")
-                                    }
-                                }
-                                restoViewModel.setTopOrBottom()
-                            }
                     }
                     .padding(8)
                     .background(Color.red)
@@ -80,13 +84,11 @@ struct MenuView: View {
                 
                 // categories
                 HStack{
-                    Button(action: {
-                        searchText = ""
-                    }) {
-                        Text("All")
-                            .lineLimit(1)
-                    }
-                    .buttonStyle(CustomButtonStyle())
+                    
+                    Text("Sort by:")
+                        .foregroundStyle(Color.gray)
+                        .font(.subheadline)
+                        .lineLimit(1)
                     
                     Button(action: {
                         toggleSortOption("Rating")
@@ -113,6 +115,7 @@ struct MenuView: View {
                     .buttonStyle(CustomButtonStyle())
                 }
                 .padding(.bottom)
+
                 
                 // List of filtered restaurants
                 List(filteredRestaurants, id: \.id) { restaurant in

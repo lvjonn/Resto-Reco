@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ShuffleView: View {
     @EnvironmentObject var restoViewModel: RestoViewModel

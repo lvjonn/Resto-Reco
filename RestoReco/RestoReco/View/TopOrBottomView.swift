@@ -130,6 +130,9 @@ struct TopOrBottomView: View {
                 }
             }
         }
+        .onAppear(){
+            restoViewModel.setTopOrBottom()
+        }
         .sheet(isPresented: $show, content: {
             if let unwrapped = winner{
                 AddPlannerView(restaurant: unwrapped, show: $show)

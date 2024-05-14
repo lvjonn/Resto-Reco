@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct RestaurantModel: Identifiable, Codable {
+struct RestaurantModel: Identifiable, Codable, Equatable {
+    static func == (lhs: RestaurantModel, rhs: RestaurantModel) -> Bool {
+        lhs.id == rhs.id
+    }
+    
     var id: String
     var alias: String
     var name: String
