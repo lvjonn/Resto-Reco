@@ -29,8 +29,8 @@ class RestoViewModel: ObservableObject{
             }
         }
         //        restaurants = loadRestaurants() //use this if using cached data
-        setTopOrBottom()
         planner = loadPlanner()
+        setTopOrBottom()
     }
     
     func setTopOrBottom(){
