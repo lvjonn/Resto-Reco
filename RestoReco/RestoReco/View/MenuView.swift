@@ -7,12 +7,12 @@ struct MenuView: View {
     
     var filteredRestaurants: [RestaurantModel] {
         
-        var filtered = restoViewModel.restaurants
-                
+        let filtered = restoViewModel.restaurants
+        //use this if using cached data.
         // Filter restaurants based on search text
-        if !searchText.isEmpty {
-            filtered = filtered.filter { $0.name.lowercased().contains(searchText.lowercased()) }
-        }
+        //        if !searchText.isEmpty {
+        //            filtered = filtered.filter { $0.name.lowercased().contains(searchText.lowercased()) }
+        //        }
         
         // Sort restaurants based on selected options
         if sortOptions.isEmpty {
@@ -46,15 +46,34 @@ struct MenuView: View {
                 
                 // Search bar
                 HStack {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(.gray)
-                        .padding(.leading, 1)
-                    
-                    TextField("Search", text: $searchText)
+                    TextField("Location", text: $searchText)
                         .padding(8)
                         .background(Color(.systemGray6))
                         .cornerRadius(8)
                         .foregroundColor(.black)
+                    Button(action:{
+                    }){
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.white)
+                            .padding(.leading, 1)
+                            .onTapGesture {
+                                YelpFusionAPI().searchBusinesses(location: searchText) { result in
+                                    switch result {
+                                    case .success(let fetchedRestaurants):
+                                        restoViewModel.restaurants = fetchedRestaurants
+                                    case .failure(let error):
+                                        print("Failed to fetch restaurants: \(error)")
+                                    }
+                                }
+                                restoViewModel.setTopOrBottom()
+                            }
+                    }
+                    .padding(8)
+                    .background(Color.red)
+                    .cornerRadius(20)
+                    .shadow(color: .gray, radius: 2, x: 1, y: 2)
+                    
+                    
                 }
                 .padding(.horizontal)
                 Spacer()

@@ -11,8 +11,8 @@ class RestoViewModel: ObservableObject{
     
     @Published var restaurants: [RestaurantModel] = []
     private var yelpApi = YelpFusionAPI()
-    var optionOne: RestaurantModel?
-    var optionTwo: RestaurantModel?
+    @Published var optionOne: RestaurantModel?
+    @Published var optionTwo: RestaurantModel?
     
     
     
@@ -20,23 +20,27 @@ class RestoViewModel: ObservableObject{
     
     init(){
         //Use this if there are still available API requests, otherwise, use the cached data.
-        //        yelpApi.searchBusinesses(location: "Sydney") { result in
-        //            switch result {
-        //            case .success(let fetchedRestaurants):
-        //                self.restaurants = fetchedRestaurants
-        //            case .failure(let error):
-        //                print("Failed to fetch restaurants: \(error)")
-        //            }
-        //        }
-        restaurants = loadRestaurants()
-        optionOne = randomRestaurant()
+        yelpApi.searchBusinesses(location: "Hay Market New South Wales") { result in
+            switch result {
+            case .success(let fetchedRestaurants):
+                self.restaurants = fetchedRestaurants
+            case .failure(let error):
+                print("Failed to fetch restaurants: \(error)")
+            }
+        }
+        //        restaurants = loadRestaurants() //use this if using cached data
+        setTopOrBottom()
+        planner = loadPlanner()
+    }
+    
+    func setTopOrBottom(){
         while(true){
+            optionOne = randomRestaurant()
             optionTwo = randomRestaurant()
             if optionOne?.id != optionTwo?.id{ //ensures its not the same.
                 break
             }
         }
-        planner = loadPlanner()
     }
     
     //load json data due to API limits.
@@ -83,7 +87,7 @@ class RestoViewModel: ObservableObject{
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0].appendingPathComponent(filename)
     }
-
+    
     //decode json file into [PlannerModel]
     func loadPlanner() -> [PlannerModel] {
         var restaurants: [PlannerModel] = []

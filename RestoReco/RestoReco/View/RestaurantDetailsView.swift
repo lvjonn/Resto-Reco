@@ -41,77 +41,10 @@ struct RestaurantDetailsView: View {
                             .clipShape(Capsule())
                         Spacer()
                     }
-                    
-                    RoundedRectangle(cornerRadius: 16)
-                        .foregroundColor(Color(UIColor.systemBackground)) // Set background color
-                        .padding(.horizontal, -20)
-                        .padding(.top) // Adjust top padding to overlap slightly with map
-                        .padding()
-                        .shadow(radius: 10)
-                        .overlay(
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text(restaurant.name)
-                                    .font(.title)
-                                    .fontWeight(.bold)
-                                    .padding(.top) // Add padding to the title
-                                    .padding(.top)
-                                    .foregroundColor(.black)
-                                
-                                
-                                Text("\(String(format: "%.1f", restaurant.rating)) \(Image(systemName: "star.fill")) ")
-                                    .foregroundColor(.gray)
-                                    .multilineTextAlignment(.leading)
-                                
-                                Text("Reviews: \(restaurant.reviewCount)")
-                                    .foregroundColor(.gray)
-                                    .multilineTextAlignment(.leading)
-                                    .lineLimit(1)
-                                if let price = restaurant.price{
-                                    Text("Price: \(price)")
-                                        .foregroundColor(.gray)
-                                        .multilineTextAlignment(.leading)
-                                }
-                                Text("\(Image(systemName: "location.fill")) \(restaurant.location.displayAddress.joined(separator: ", "))")
-                                    .foregroundColor(.gray)
-                                    .multilineTextAlignment(.leading)
-                                    .lineLimit(2)
-                                Text("\(Image(systemName: "phone.fill")) \(restaurant.phone)")
-                                    .foregroundColor(.gray)
-                                    .multilineTextAlignment(.leading)
-                                HStack {
-                                    Spacer()
-                                    AsyncImage(url: URL(string: restaurant.imageUrl ?? "")) { image in
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .cornerRadius(10)
-                                    } placeholder: {
-                                        ProgressView()
-                                    }
-                                    .frame(width: 200, height: 200)
-                                    .cornerRadius(8)
-                                    Spacer()
-                                }
-                                
-                                HStack {
-                                    Spacer()
-                                    // add to planner button
-                                    Button(action: {
-                                        // implement add to planner
-                                        showAddPlanner.toggle()
-                                    }) {
-                                        Text("Add to Planner")
-                                    }
-                                    .buttonStyle(CustomButtonStyle())
-                                    .padding(.top)
-                                    .padding(.bottom)
-                                    Spacer()
-                                }
-                                .padding(.bottom)
-                            }
-                            .foregroundColor(.gray)
-                            .padding(.horizontal)
-                        )
+                    Spacer()
+                    CanvasView(restaurant: restaurant, showAddPlanner: $showAddPlanner)
+                    Spacer()
+
                 } else {
                     // Show a blank space if details are hidden
                     Spacer()
@@ -151,6 +84,84 @@ struct RestaurantDetailsView_Preview: PreviewProvider {
         let restoViewModel = RestoViewModel()
             RestaurantDetailsView(restaurant: sampleRestaurant)
                 .environmentObject(restoViewModel)
+    }
+}
+
+struct CanvasView: View{
+    let restaurant: RestaurantModel
+    @Binding var showAddPlanner: Bool
+    var body: some View{
+        VStack(alignment: .leading, spacing: 8) {
+            Text(restaurant.name)
+                .font(.title)
+                .fontWeight(.bold)
+                .padding(.top) // Add padding to the title
+                .padding(.top)
+                .foregroundColor(.black)
+                .padding(.horizontal)
+            
+            
+            Text("\(String(format: "%.1f", restaurant.rating)) \(Image(systemName: "star.fill")) ")
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.leading)
+                .padding(.horizontal)
+            
+            Text("Reviews: \(restaurant.reviewCount)")
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.leading)
+                .lineLimit(1)
+                .padding(.horizontal)
+            if let price = restaurant.price{
+                Text("Price: \(price)")
+                    .foregroundColor(.gray)
+                    .multilineTextAlignment(.leading)
+                    .padding(.horizontal)
+            }
+            Text("\(Image(systemName: "location.fill")) \(restaurant.location.displayAddress.joined(separator: ", "))")
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.leading)
+                .lineLimit(2)
+                .padding(.horizontal)
+            Text("\(Image(systemName: "phone.fill")) \(restaurant.phone)")
+                .foregroundColor(.gray)
+                .multilineTextAlignment(.leading)
+                .padding(.horizontal)
+            HStack {
+                Spacer()
+                AsyncImage(url: URL(string: restaurant.imageUrl ?? "")) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(10)
+                } placeholder: {
+                    ProgressView()
+                }
+                .frame(width: 200, height: 200)
+                .cornerRadius(8)
+                Spacer()
+            }
+            
+            HStack {
+                Spacer()
+                // add to planner button
+                Button(action: {
+                    // implement add to planner
+                    showAddPlanner.toggle()
+                }) {
+                    Text("Add to Planner")
+                }
+                .buttonStyle(CustomButtonStyle())
+                .padding(.top)
+                .padding(.bottom)
+                Spacer()
+            }
+            .padding(.bottom)
+        }
+        .background()
+        .cornerRadius(16)
+        .foregroundColor(.gray)
+        .padding(.horizontal)
+
     }
 }
 
