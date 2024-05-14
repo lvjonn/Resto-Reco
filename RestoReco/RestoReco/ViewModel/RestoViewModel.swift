@@ -15,7 +15,6 @@ class RestoViewModel: ObservableObject{
     @Published var optionOne: RestaurantModel?
     @Published var optionTwo: RestaurantModel?
     
-//    @Published var shuffleRegion: MKCoordinateRegion
     
     @Published var planner: [PlannerModel] = []
     
