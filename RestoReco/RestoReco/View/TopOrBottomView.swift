@@ -65,6 +65,9 @@ struct TopOrBottomView: View {
                         }
                         .padding()
                     }
+                    .onAppear(){
+                        restoViewModel.setTopOrBottom()
+                    }
                     .padding(.vertical, 8)
                 }else{
                     //choice view
@@ -129,9 +132,6 @@ struct TopOrBottomView: View {
                     
                 }
             }
-        }
-        .onAppear(){
-            restoViewModel.setTopOrBottom()
         }
         .sheet(isPresented: $show, content: {
             if let unwrapped = winner{
