@@ -14,7 +14,7 @@ struct RestaurantDetailsView: View {
     @State private var region: MKCoordinateRegion
     @State private var showDetails = true // Flag to control the display of restaurant details
     @State private var showAddPlanner = false
-
+    
     init(restaurant: RestaurantModel){
         self.restaurant = restaurant
         region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: restaurant.coordinates.latitude, longitude: restaurant.coordinates.longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
@@ -26,13 +26,16 @@ struct RestaurantDetailsView: View {
                 MapPin(coordinate: CLLocationCoordinate2D(latitude: restaurant.coordinates.latitude, longitude: restaurant.coordinates.longitude), tint: .red)
             }
             .onChange(of: restaurant){
-                region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: restaurant.coordinates.latitude, longitude: restaurant.coordinates.longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+                DispatchQueue.main.async{
+                    region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: restaurant.coordinates.latitude, longitude: restaurant.coordinates.longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+                }
+                
             }
             .edgesIgnoringSafeArea(.all)
-
+            
             // Details overlay
             VStack(alignment: .leading, spacing: 8) {
-
+                
                 if showDetails { // Show restaurant details if flag is true
                     HStack{
                         Spacer()
@@ -48,14 +51,14 @@ struct RestaurantDetailsView: View {
                     Spacer()
                     CanvasView(restaurant: restaurant, showAddPlanner: $showAddPlanner)
                     Spacer()
-
+                    
                 } else {
                     // Show a blank space if details are hidden
                     Spacer()
                 }
             }
             .padding()
-
+            
             // Toggle button to show/hide restaurant details
             VStack {
                 Spacer()
@@ -86,8 +89,8 @@ struct RestaurantDetailsView_Preview: PreviewProvider {
         let sampleRestaurant = RestaurantModel(id: "1", alias: "sample-restaurant", name: "Sample Restaurant", imageUrl: nil, isClosed: false, url: "https://example.com", reviewCount: 100, categories: [], rating: 4.5, coordinates: RestaurantModel.Coordinates(latitude: 37.7749, longitude: -122.4194), transactions: [], price: "$$", location: RestaurantModel.Location(address1: "123 Sample St", address2: nil, address3: nil, city: "Sample City", zipCode: "12345", country: "USA", state: "CA", displayAddress: ["123 Sample St", "Sample City, CA 12345"]), phone: "123-456-7890", displayPhone: "123-456-7890", distance: 1.0, attributes: RestaurantModel.Attributes(businessTempClosed: nil, menuUrl: nil, open24Hours: nil, waitlistReservation: nil))
         
         let restoViewModel = RestoViewModel()
-            RestaurantDetailsView(restaurant: sampleRestaurant)
-                .environmentObject(restoViewModel)
+        RestaurantDetailsView(restaurant: sampleRestaurant)
+            .environmentObject(restoViewModel)
     }
 }
 
@@ -165,7 +168,7 @@ struct CanvasView: View{
         .cornerRadius(16)
         .foregroundColor(.gray)
         .padding(.horizontal)
-
+        
     }
 }
 
