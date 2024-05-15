@@ -31,7 +31,7 @@ class RestoViewModel: ObservableObject{
                 print("Failed to fetch restaurants: \(error)")
             }
         }
-//                restaurants = loadRestaurants() //use this if using cached data
+//        restaurants = loadRestaurants() //use this if using cached data
         self.planner = loadPlanner()
     }
     

@@ -48,7 +48,7 @@ struct ShuffleView: View {
                             .buttonStyle(CustomButtonStyle())
                             .padding(.bottom)
                         }
-                        Text("Press the button to shuffle")
+                        Text(restoViewModel.restaurants.isEmpty ? "Please search a valid location first.": "Press the button to shuffle")
                             .foregroundColor(.secondary)
                             .font(.headline)
                             .padding()

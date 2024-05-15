@@ -38,13 +38,21 @@ struct TopOrBottomView: View {
                         
                         HStack{
                             Spacer()
-                            Image(systemName: "arrow.up.arrow.down.circle.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: 50, maxHeight: 50)
-                                .foregroundColor(.red)
-                                .foregroundStyle(.tint)
+                            VStack {
+                                Image(systemName: "arrow.up.arrow.down.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxWidth: 50, maxHeight: 50)
+                                    .foregroundColor(.red)
+                                    .foregroundStyle(.tint)
                                 .padding(.bottom)
+                                if(restoViewModel.restaurants.isEmpty){
+                                    Text("Please search a valid location first.")
+                                        .foregroundColor(.secondary)
+                                        .font(.headline)
+                                        .padding()
+                                }
+                            }
                             Spacer()
                         }
                         .padding(20)

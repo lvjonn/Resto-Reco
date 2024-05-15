@@ -80,7 +80,6 @@ struct MenuView: View {
                     
                 }
                 .padding(.horizontal)
-                Spacer()
                 
                 // categories
                 HStack{
@@ -115,26 +114,38 @@ struct MenuView: View {
                     .buttonStyle(CustomButtonStyle())
                 }
                 .padding(.bottom)
-
-                
-                // List of filtered restaurants
-                List(filteredRestaurants, id: \.id) { restaurant in
-                    NavigationLink(destination: RestaurantDetailsView(/*pass in restaurant*/
-                        restaurant: restaurant)) {
-                            VStack(alignment: .leading, spacing: 8) {
-                                RestaurantOverview(restaurant: restaurant)
+                if (restoViewModel.restaurants.isEmpty){
+                    Spacer()
+                    Text("No results found from Location.")
+                        .foregroundColor(.secondary)
+                        .font(.headline)
+                        .padding()
+                    Spacer()
+                }else{
+                    // List of filtered restaurants
+                    List(filteredRestaurants, id: \.id) { restaurant in
+                        NavigationLink(destination: RestaurantDetailsView(/*pass in restaurant*/
+                            restaurant: restaurant)) {
+                                VStack(alignment: .leading, spacing: 8) {
+                                    RestaurantOverview(restaurant: restaurant)
+                                }
+                                .padding(.vertical, 8)
                             }
                             .padding(.vertical, 8)
-                        }
-                        .padding(.vertical, 8)
-                        .padding(.trailing)
-                        .background(Color(.systemBackground))
-                        .cornerRadius(8)
-                        .shadow(radius: 4)
+                            .padding(.trailing)
+                            .background(Color(.systemBackground))
+                            .cornerRadius(8)
+                            .shadow(radius: 4)
+                    }
+                    .listStyle(PlainListStyle())
+                    
                 }
-                .listStyle(PlainListStyle())
+                Spacer()
                 
             }
+        }
+        .onDisappear(){
+            hideKeyboard()
         }
     }
     

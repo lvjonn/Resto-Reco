@@ -80,6 +80,7 @@ struct TabItem: View{
         .frame(maxWidth: .infinity)
         .contentShape(Rectangle())
         .onTapGesture {
+            hideKeyboard()
             activeTab = tab
         }
     }
